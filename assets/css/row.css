@@ -1,0 +1,240 @@
+/* ==========================================================================
+   Row Demo Styles
+   Ported from Styled Components and inline styles
+   ========================================================================== */
+
+:root {
+    --sh-brown: #a29178;
+    --sh-text: #1a1a1a;
+    --sh-hover-text: #fff;
+    --sh-overlay: rgba(162, 145, 120, 0.98);
+}
+
+.row-demo-container {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: var(--sh-brown);
+    color: var(--sh-text);
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+.row-wrapper {
+    max-width: 95vw;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* --- List Section --- */
+.index-section {
+    padding: 60px 0;
+    position: relative;
+    z-index: 10;
+}
+
+.index-row {
+    display: grid;
+    grid-template-columns: 0.5fr 6fr 2fr 2fr;
+    align-items: baseline;
+    padding: 15px 0;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    transition: color 0.1s ease;
+}
+
+.index-row:last-child {
+    border-bottom: none;
+}
+
+.index-row h1 {
+    font-size: 4vw;
+    text-transform: uppercase;
+    margin: 0;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.02em;
+}
+
+.row-meta {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.index-row:hover {
+    color: var(--sh-hover-text);
+}
+
+/* --- Floating Hover Image --- */
+.hover-image-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-5deg);
+    width: 30vw;
+    height: auto;
+    pointer-events: none;
+    z-index: 20;
+    opacity: 0;
+    transition: opacity 0.2s ease, transform 0.4s ease-out;
+}
+
+.hover-image-container.visible {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(-5deg) scale(1);
+}
+
+.hover-image-container img {
+    width: 100%;
+    height: auto;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    display: block;
+}
+
+/* --- Grid Section --- */
+.grid-header {
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    margin: 60px 0 20px;
+    border-top: 1px solid black;
+    padding-top: 20px;
+    display: inline-block;
+}
+
+.grid-section {
+    padding: 100px 0;
+    border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.grid-tile {
+    cursor: pointer;
+    position: relative;
+    transition: opacity 0.3s ease;
+}
+
+.grid-tile img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+}
+
+.grid-tile:hover img {
+    filter: grayscale(0%);
+}
+
+@media (max-width: 768px) {
+    .index-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .row-meta:first-child {
+        display: none; /* Hide index number on mobile */
+    }
+    
+    .text-right {
+        text-align: left;
+    }
+    
+    .index-row h1 {
+        font-size: 2rem;
+    }
+}
+
+/* --- Modal --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--sh-overlay);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.modal-overlay.is-open {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal-content {
+    background: transparent;
+    padding: 0;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    color: #000;
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    font-size: 1rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    border: 1px solid #000;
+    padding: 10px 20px;
+    border-radius: 20px;
+    background: transparent;
+}
+
+.close-btn:hover {
+    background: #000;
+    color: #fff;
+}
+
+.modal-image {
+    max-width: 80%;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    margin-bottom: 30px;
+}
+
+.modal-title {
+    text-transform: uppercase;
+    font-size: 2rem;
+    margin: 0 0 10px;
+}
+
+.modal-author {
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.borrow-btn {
+    background: transparent;
+    color: #000;
+    border: 1px solid #000;
+    padding: 15px 40px;
+    text-transform: uppercase;
+    margin-top: 30px;
+    cursor: pointer;
+    border-radius: 30px;
+    font-size: 0.9rem;
+}
+
+.borrow-btn:hover {
+    background: #000;
+    color: #fff;
+}
