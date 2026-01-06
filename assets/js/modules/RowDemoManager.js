@@ -2,7 +2,10 @@
  * RowDemoManager Class
  * Orchestrates the rendering of the list and grid views, handling user interactions.
  */
-class RowDemoManager {
+import { DOMUtils } from './domUtils.js';
+import { Constants } from './constants.js';
+
+export class RowDemoManager {
     constructor({ modalManager }) {
         this.modalManager = modalManager;
         this.container = null;
@@ -22,8 +25,8 @@ class RowDemoManager {
         this.container = DOMUtils.byId(containerId);
         if (!this.container) return;
 
-        // Preload images
-        this.preloadImages();
+        // Note: Image preloading removed to support heavy assets (GIFs)
+        // Images will now lazy-load only when the user hovers over a row.
 
         DOMUtils.addClass(this.container, 'row-demo-container');
         
@@ -33,24 +36,12 @@ class RowDemoManager {
         // Render Components
         this.renderHoverImageContainer(this.container);
         
-        // If modal manager used to create modal inside this container, we should do it.
-        // But the new ModalManager attaches to parent. We will pass container as parent.
-        this.modalManager.init(this.container);
+        // ModalManager is now initialized in main.js and attached to body
 
         this.renderBookList(wrapper);
         this.renderBookGrid(wrapper);
 
         DOMUtils.append(this.container, wrapper);
-    }
-
-    /**
-     * Preload images for smoother hover effects
-     */
-    preloadImages() {
-        Constants.BOOKS.forEach(book => {
-            const img = new Image();
-            img.src = book.image;
-        });
     }
 
     /**

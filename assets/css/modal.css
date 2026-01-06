@@ -1,0 +1,87 @@
+/* ==========================================================================
+   Modal Styles
+   Extracted from row.css for global reusability
+   ========================================================================== */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--sh-overlay);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.modal-overlay.is-open {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal-content {
+    background: transparent;
+    padding: 0;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    color: #000;
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    font-size: 1rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    border: 1px solid #000;
+    padding: 10px 20px;
+    border-radius: 20px;
+    background: transparent;
+}
+
+.close-btn:hover {
+    background: #000;
+    color: #fff;
+}
+
+.modal-image {
+    max-width: 80%;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    margin-bottom: 30px;
+}
+
+.modal-title {
+    text-transform: uppercase;
+    font-size: 2rem;
+    margin: 0 0 10px;
+}
+
+.modal-author {
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.borrow-btn {
+    background: transparent;
+    color: #000;
+    border: 1px solid #000;
+    padding: 15px 40px;
+    text-transform: uppercase;
+    margin-top: 30px;
+    cursor: pointer;
+    border-radius: 30px;
+    font-size: 0.9rem;
+}
+
+.borrow-btn:hover {
+    background: #000;
+    color: #fff;
+}

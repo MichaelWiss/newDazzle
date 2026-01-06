@@ -2,7 +2,10 @@
  * ModalManager Class
  * Handles creation, rendering, and interactions for the detail modal
  */
-class ModalManager {
+import { DOMUtils } from './domUtils.js';
+import { Constants } from './constants.js';
+
+export class ModalManager {
     constructor() {
         this.overlay = null;
         this.content = null;

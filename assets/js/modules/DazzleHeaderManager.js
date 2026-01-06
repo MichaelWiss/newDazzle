@@ -2,7 +2,10 @@
  * DazzleHeaderManager Class
  * Manages the Dazzle header animation, sparkles, and layout.
  */
-class DazzleHeaderManager {
+import { DOMUtils } from './domUtils.js';
+import { Constants } from './constants.js';
+
+export class DazzleHeaderManager {
     constructor() {
         this.container = null;
         this.gradientText = null;
@@ -37,6 +40,12 @@ class DazzleHeaderManager {
         // Initial Calculation
         requestAnimationFrame(() => {
             this.updateGradientPositions();
+        });
+
+        // Robustness: Recalculate on window load to ensure fonts are ready
+        // This fixes the Safari "blocky text" issue where measurements happen before font load
+        window.addEventListener('load', () => {
+             this.updateGradientPositions();
         });
     }
 

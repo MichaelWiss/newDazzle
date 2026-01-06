@@ -4,10 +4,9 @@
  * Reduces code duplication across rendering functions
  */
 
-const DOMUtils = (() => {
-    const SVG_NS = 'http://www.w3.org/2000/svg';
+const SVG_NS = 'http://www.w3.org/2000/svg';
 
-    return {
+export const DOMUtils = {
         /**
          * Query a single element, return null if not found
          * @param {string} selector - CSS selector
@@ -288,5 +287,4 @@ const DOMUtils = (() => {
             if (!el) return false;
             return el.matches(selector);
         },
-    };
-})();
+};

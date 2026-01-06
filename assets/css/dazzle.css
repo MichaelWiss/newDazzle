@@ -125,6 +125,9 @@
     color: transparent;
     -webkit-text-fill-color: transparent;
     
+    /* Force GPU for Safari rendering glitch fix */
+    transform: translateZ(0);
+
     /* Position set by JS via --bg-x variable */
     background-position: var(--bg-x, 0%) 0;
     
