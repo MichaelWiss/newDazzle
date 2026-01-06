@@ -99,6 +99,14 @@
     text-align: left;
     text-transform: uppercase;
     padding-bottom: 0.5rem;
+    
+    /* Hide initially to prevent FOUC/glitches */
+    opacity: 0;
+    transition: opacity 0.2s ease-out;
+}
+
+.dazzle-text-wrapper.loaded {
+    opacity: 1;
 }
 
 @media (min-width: 768px) {
@@ -116,24 +124,43 @@
 
 .gradient-word {
     display: inline-block;
+    position: relative;
+    /* Removed background logic from here to fix Safari composition issues */
+}
+
+/* Apply animation only when loaded to ensure synchronization */
+.dazzle-text-wrapper.loaded .gradient-word {
+    animation-name: fall-in;
+    animation-duration: 0.6s;
+    animation-timing-function: cubic-bezier(0.2, 0.6, 0.2, 1);
+    animation-fill-mode: both;
+    /* Do NOT use shorthand property to avoid overriding inline animation-delay */
+}
+
+.gradient-text-clip {
+    display: inline-block; /* Works better than inline for detailed clipping */
     
     /* Robust Gradient Logic */
     background-image: linear-gradient(to right, #ff5ca8, #ffbd2e, #2bf65d, #05d5ff, #a855f7, #ff5ca8);
-    background-size: 100vw 100%; /* Spans entire viewport width */
+    background-size: 100vw 100%;
+    background-attachment: scroll; /* Default, safer */
+    
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
     -webkit-text-fill-color: transparent;
     
-    /* Force GPU for Safari rendering glitch fix */
-    transform: translateZ(0);
-
-    /* Position set by JS via --bg-x variable */
+    /* Inherit position from wrapper */
     background-position: var(--bg-x, 0%) 0;
     
-    /* Animation Logic */
-    animation: fall-in 0.6s cubic-bezier(0.2, 0.6, 0.2, 1) both, gradient-x 10s linear infinite;
-    will-change: transform, background-position;
+    /* Separate animation for gradient movement */
+    animation: gradient-x 10s linear infinite;
+    
+    /* Safari Fix: Clone decoration box */
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    
+    padding-right: 0.05em; /* Prevent clipping cut-off */
 }
 
 /* Sparkles */

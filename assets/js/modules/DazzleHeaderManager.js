@@ -9,6 +9,7 @@ export class DazzleHeaderManager {
     constructor() {
         this.container = null;
         this.gradientText = null;
+        this.textWrapper = null;
         this.observer = null;
         this.resizeHandler = null;
         
@@ -40,6 +41,10 @@ export class DazzleHeaderManager {
         // Initial Calculation
         requestAnimationFrame(() => {
             this.updateGradientPositions();
+            // Reveal content after initial calculation
+            if (this.textWrapper) {
+                DOMUtils.addClass(this.textWrapper, 'loaded');
+            }
         });
 
         // Robustness: Recalculate on window load to ensure fonts are ready
@@ -63,7 +68,7 @@ export class DazzleHeaderManager {
      */
     renderContent() {
         const contentWrapper = DOMUtils.createElement('div', 'dazzle-content');
-        const textWrapper = DOMUtils.createElement('div', 'dazzle-text-wrapper');
+        this.textWrapper = DOMUtils.createElement('div', 'dazzle-text-wrapper');
         
         // Gradient Text Generation
         this.gradientText = DOMUtils.createElement('span', 'gradient-text');
@@ -71,8 +76,14 @@ export class DazzleHeaderManager {
         const fragment = document.createDocumentFragment();
         
         words.forEach((word, index) => {
-            const wordSpan = DOMUtils.createElement('span', 'gradient-word', { text: word });
+            // Wrapper for Animation & Layout
+            const wordSpan = DOMUtils.createElement('span', 'gradient-word');
             DOMUtils.applyStyles(wordSpan, { animationDelay: `${index * 0.04}s` });
+            
+            // Inner span for Gradient & Clipping (Fixes Safari)
+            const innerSpan = DOMUtils.createElement('span', 'gradient-text-clip', { text: word });
+            
+            DOMUtils.append(wordSpan, innerSpan);
             fragment.appendChild(wordSpan);
             
             if (index < words.length - 1) {
@@ -81,12 +92,12 @@ export class DazzleHeaderManager {
         });
 
         DOMUtils.append(this.gradientText, fragment);
-        DOMUtils.append(textWrapper, this.gradientText);
+        DOMUtils.append(this.textWrapper, this.gradientText);
 
         // Render Sparkles
-        this.renderSparkles(textWrapper);
+        this.renderSparkles(this.textWrapper);
 
-        DOMUtils.append(contentWrapper, textWrapper);
+        DOMUtils.append(contentWrapper, this.textWrapper);
 
         // Footer
         const footer = DOMUtils.createElement('p', 'dazzle-footer', { text: 'Powered by Vanilla JS' });
@@ -136,6 +147,8 @@ export class DazzleHeaderManager {
         spans.forEach(span => {
             const rect = span.getBoundingClientRect();
             const relativeX = rect.left;
+            // Apply variable to the inner clip element or the wrapper depending on CSS strategy
+            // We apply to wrapper, and inner inherits or uses it
             span.style.setProperty('--bg-x', `-${relativeX}px`);
         });
     }
