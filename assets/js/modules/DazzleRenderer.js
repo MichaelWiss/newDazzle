@@ -60,32 +60,62 @@ const DazzleRenderer = (() => {
         
         // Gradient Text
         const gradientText = DOMUtils.createElement('span', 'gradient-text');
-        const colors = Constants.DAZZLE_COLORS.join(', ');
-        const speed = 10; // seconds
-
-        DOMUtils.applyStyles(gradientText, {
-            backgroundImage: `linear-gradient(to right, ${colors})`,
-            animationDuration: `${speed}s`
-        });
-
+        
+        // Remove manual styling - rely on CSS classes
+        
         // Split text into words
         const words = Constants.DAZZLE_TEXT.trim().split(/\s+/);
+        const fragment = document.createDocumentFragment();
         
         words.forEach((word, index) => {
             const wordSpan = DOMUtils.createElement('span', 'gradient-word', { text: word });
+            
+            // Set initial animation delay
             DOMUtils.applyStyles(wordSpan, {
                 animationDelay: `${index * 0.04}s`
             });
             
-            DOMUtils.append(gradientText, wordSpan);
+            fragment.appendChild(wordSpan);
             
             // Add space
             if (index < words.length - 1) {
-                gradientText.appendChild(document.createTextNode(' '));
+                fragment.appendChild(document.createTextNode(' '));
             }
         });
 
+        DOMUtils.append(gradientText, fragment);
         DOMUtils.append(textWrapper, gradientText);
+
+        // ... Sparkles ...
+        
+        // Calculate Positions after Layout
+        // We need to wait for the DOM to update. Since we just appended, layout is invalidated.
+        // Reading offsetLeft forces reflow, which is what we need to get positions.
+        requestAnimationFrame(() => {
+            const spans = gradientText.querySelectorAll('.gradient-word');
+            const containerRect = gradientText.getBoundingClientRect();
+            
+            spans.forEach(span => {
+                const rect = span.getBoundingClientRect();
+                // Calculate position relative to viewport or container?
+                // If background-size is 100vw, we want position relative to viewport.
+                // If we want the rainbow to be "fixed" to the screen X axis:
+                const relativeX = rect.left;
+                
+                // Set --bg-x to negative offset to align the background "behind" the text
+                span.style.setProperty('--bg-x', `-${relativeX}px`);
+            });
+        });
+
+        // Handle Resize to keep alignment
+        window.addEventListener('resize', () => {
+             const spans = gradientText.querySelectorAll('.gradient-word');
+             spans.forEach(span => {
+                const rect = span.getBoundingClientRect();
+                const relativeX = rect.left;
+                span.style.setProperty('--bg-x', `-${relativeX}px`);
+             });
+        });
 
         // Sparkles
         // Config based on React component:
@@ -115,6 +145,19 @@ const DazzleRenderer = (() => {
         DOMUtils.append(contentWrapper, footer);
 
         DOMUtils.append(container, contentWrapper);
+
+        // Performance: Pause animations when off-screen
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    DOMUtils.removeClass(container, 'paused');
+                } else {
+                    DOMUtils.addClass(container, 'paused');
+                }
+            });
+        }, { threshold: 0 });
+        
+        observer.observe(container);
     };
 
     return {

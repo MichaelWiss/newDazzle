@@ -5,11 +5,11 @@
 
 /* Animation Keyframes */
 @keyframes gradient-x {
-    0%, 100% {
-        background-position: 0% 50%;
+    0% {
+        background-position: var(--bg-x) 0;
     }
-    50% {
-        background-position: 100% 50%;
+    100% {
+        background-position: calc(var(--bg-x) + 100vw) 0;
     }
 }
 
@@ -61,6 +61,8 @@
     filter: blur(120px);
     pointer-events: none;
     opacity: 0.2;
+    will-change: transform;
+    transform: translateZ(0); /* Hardware accelerate */
 }
 
 .bg-blob-purple {
@@ -109,17 +111,26 @@
 /* Gradient Text Component */
 .gradient-text {
     display: inline-block;
-    background-size: 200% auto;
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    animation: gradient-x linear infinite;
+    /* Gradient Logic Moved to Children for Safari Compatibility */
 }
 
 .gradient-word {
     display: inline-block;
-    animation: fall-in 0.6s cubic-bezier(0.2, 0.6, 0.2, 1) both;
-    color: transparent; /* Parent handles the gradient clip */
+    
+    /* Robust Gradient Logic */
+    background-image: linear-gradient(to right, #ff5ca8, #ffbd2e, #2bf65d, #05d5ff, #a855f7, #ff5ca8);
+    background-size: 100vw 100%; /* Spans entire viewport width */
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    
+    /* Position set by JS via --bg-x variable */
+    background-position: var(--bg-x, 0%) 0;
+    
+    /* Animation Logic */
+    animation: fall-in 0.6s cubic-bezier(0.2, 0.6, 0.2, 1) both, gradient-x 10s linear infinite;
+    will-change: transform, background-position;
 }
 
 /* Sparkles */
@@ -141,4 +152,27 @@
     text-transform: uppercase;
     letter-spacing: 0.1em;
     font-family: monospace;
+}
+
+/* Performance: Paused State */
+.paused * {
+    animation-play-state: paused !important;
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .gradient-text {
+        background-position: 0% 50%; /* Fixed gradient */
+    }
+    
+    .sparkle-container {
+        display: none; /* Hide flashing elements */
+    }
 }

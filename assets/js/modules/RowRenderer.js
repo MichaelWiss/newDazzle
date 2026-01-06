@@ -9,27 +9,52 @@ const RowRenderer = (() => {
     let hoveredBookId = null;
 
     // -- Render Helpers --
+    
+    const preloadImages = () => {
+        Constants.BOOKS.forEach(book => {
+            const img = new Image();
+            img.src = book.image;
+        });
+    };
 
     const renderBookList = (container) => {
         const listContainer = DOMUtils.createElement('div', 'index-section');
+        const fragment = document.createDocumentFragment();
         
+        // Event Delegation for List
+        DOMUtils.addEventListener(listContainer, 'click', (e) => {
+            const row = DOMUtils.closest(e.target, '.index-row');
+            if (row) {
+                const bookId = DOMUtils.getData(row, 'bookId');
+                if (bookId) openModal(bookId);
+            }
+        });
+
+        DOMUtils.addEventListener(listContainer, 'mouseover', (e) => {
+            const row = DOMUtils.closest(e.target, '.index-row');
+            if (row) {
+                const bookId = DOMUtils.getData(row, 'bookId');
+                if (bookId && hoveredBookId !== bookId) {
+                    hoveredBookId = bookId;
+                    updateHoverImage();
+                }
+            }
+        });
+
+        DOMUtils.addEventListener(listContainer, 'mouseout', (e) => {
+            const row = DOMUtils.closest(e.target, '.index-row');
+            if (row) {
+                // Only clear if we are actually leaving the row, not just moving between children
+                if (!row.contains(e.relatedTarget)) {
+                    hoveredBookId = null;
+                    updateHoverImage();
+                }
+            }
+        });
+
         Constants.BOOKS.forEach((book, index) => {
             const row = DOMUtils.createElement('div', 'index-row');
-            
-            // Interaction: Hover
-            DOMUtils.addEventListener(row, 'mouseenter', () => {
-                hoveredBookId = book.id;
-                updateHoverImage();
-            });
-            DOMUtils.addEventListener(row, 'mouseleave', () => {
-                hoveredBookId = null;
-                updateHoverImage();
-            });
-
-            // Interaction: Click (Modal)
-            DOMUtils.addEventListener(row, 'click', () => {
-                openModal(book.id);
-            });
+            DOMUtils.setData(row, 'bookId', book.id);
 
             // Columns
             // 1. Index
@@ -47,9 +72,10 @@ const RowRenderer = (() => {
             const typeCol = DOMUtils.createElement('div', 'row-meta text-right', { text: book.type });
 
             DOMUtils.appendChildren(row, [metaIndex, titleCol, authorCol, typeCol]);
-            DOMUtils.append(listContainer, row);
+            fragment.appendChild(row);
         });
 
+        DOMUtils.append(listContainer, fragment);
         DOMUtils.append(container, listContainer);
     };
 
@@ -61,20 +87,31 @@ const RowRenderer = (() => {
         // Grid Section
         const gridSection = DOMUtils.createElement('div', 'grid-section');
         const gridContainer = DOMUtils.createElement('div', 'grid-container');
+        const fragment = document.createDocumentFragment();
+
+        // Event Delegation for Grid
+        DOMUtils.addEventListener(gridContainer, 'click', (e) => {
+            const tile = DOMUtils.closest(e.target, '.grid-tile');
+            if (tile) {
+                const bookId = DOMUtils.getData(tile, 'bookId');
+                if (bookId) openModal(bookId);
+            }
+        });
 
         Constants.BOOKS.forEach(book => {
             const tile = DOMUtils.createElement('div', 'grid-tile');
+            DOMUtils.setData(tile, 'bookId', book.id);
             
-            // Interaction: Click (Modal)
-            DOMUtils.addEventListener(tile, 'click', () => {
-                openModal(book.id);
+            const img = DOMUtils.createElement('img', '', { 
+                src: book.image, 
+                alt: book.title,
+                loading: 'lazy' // Lazy load images
             });
-
-            const img = DOMUtils.createElement('img', '', { src: book.image, alt: book.title });
             DOMUtils.append(tile, img);
-            DOMUtils.append(gridContainer, tile);
+            fragment.appendChild(tile);
         });
 
+        DOMUtils.append(gridContainer, fragment);
         DOMUtils.append(gridSection, gridContainer);
         DOMUtils.append(container, gridSection);
     };
@@ -82,6 +119,11 @@ const RowRenderer = (() => {
     const renderHoverImageContainer = (parent) => {
         const container = DOMUtils.createElement('div', 'hover-image-container');
         container.id = Constants.ELEMENTS.hoverImageContainer;
+        
+        // Pre-create the image element
+        const img = DOMUtils.createElement('img', '', { alt: 'Hover Preview' });
+        DOMUtils.append(container, img);
+        
         DOMUtils.append(parent, container);
     };
 
@@ -120,19 +162,18 @@ const RowRenderer = (() => {
         const container = DOMUtils.byId(Constants.ELEMENTS.hoverImageContainer);
         if (!container) return;
 
+        const img = container.querySelector('img');
+
         if (hoveredBookId) {
             const book = Constants.BOOKS.find(b => b.id === hoveredBookId);
-            if (book) {
-                // Remove existing image to prevent stale one
-                DOMUtils.clearChildren(container);
-                
-                const img = DOMUtils.createElement('img', '', { src: book.image, alt: 'Hover Preview' });
-                DOMUtils.append(container, img);
+            if (book && img) {
+                if (img.src !== book.image) {
+                    img.src = book.image;
+                }
                 DOMUtils.addClass(container, Constants.CLASSES.visible);
             }
         } else {
             DOMUtils.removeClass(container, Constants.CLASSES.visible);
-            // Optional: clear children after transition, but simply removing class hides opacity
         }
     };
 
@@ -179,6 +220,9 @@ const RowRenderer = (() => {
     const render = (containerId) => {
         const container = DOMUtils.byId(containerId);
         if (!container) return;
+
+        // Preload images for instant hover
+        preloadImages();
 
         DOMUtils.addClass(container, 'row-demo-container');
         
