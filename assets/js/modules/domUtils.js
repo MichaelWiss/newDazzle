@@ -74,13 +74,18 @@ const DOMUtils = (() => {
         },
 
         /**
-         * Apply inline styles using Object.assign (for computed styles)
+         * Delegate event listener to a parent selector
          */
-        setInlineStyles(el, styles = {}) {
-            if (!el) return;
-            Object.entries(styles).forEach(([key, value]) => {
-                el.style[key] = value;
-            });
+        delegate(el, event, selector, handler) {
+            if (!el) return () => {};
+            const listener = (e) => {
+                const target = e.target.closest(selector);
+                if (target && el.contains(target)) {
+                    handler(e, target);
+                }
+            };
+            el.addEventListener(event, listener);
+            return () => el.removeEventListener(event, listener);
         },
 
         /**

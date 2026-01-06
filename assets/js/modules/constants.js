@@ -4,7 +4,7 @@
  */
 
 const Constants = (() => {
-    const SVG_NS = 'http://www.w3.org/2000/svg';
+    // SVG_NS removed - handled internally by DOMUtils
 
     const BOOKS = [
         { 
@@ -39,15 +39,6 @@ const Constants = (() => {
 
     const DAZZLE_TEXT = `Dazzle is a creative studio in New York City that makes everything DAZZLING. We make work across all mediums and platforms: branding, digital, motion, illustration, environmental, print, packaging & more.`;
 
-    const DAZZLE_COLORS = [
-        '#ff5ca8', // Hot Pink
-        '#ffbd2e', // Marigold
-        '#2bf65d', // Neon Green
-        '#05d5ff', // Cyan
-        '#a855f7', // Purple
-        '#ff5ca8'  // Loop back to Pink
-    ];
-
     const ELEMENTS = {
         dazzleHeader: 'dazzleHeader',
         bookList: 'bookList',
@@ -71,13 +62,18 @@ const Constants = (() => {
     // This path is a generic 4-point star/sparkle
     const SPARKLE_PATH = "M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z";
 
+    const SPARKLE_CONFIGS = [
+        { size: 64, color: '#FFD700', style: { top: '8%', left: '-2%' } },
+        { size: 48, color: '#05d5ff', style: { bottom: '20%', right: '5%', animationDelay: '1.2s' } },
+        { size: 32, color: '#ff5ca8', style: { top: '40%', left: '45%', opacity: '0.6', animationDelay: '2.5s' } }
+    ];
+
     return {
-        SVG_NS,
         BOOKS,
         DAZZLE_TEXT,
-        DAZZLE_COLORS,
         ELEMENTS,
         CLASSES,
-        SPARKLE_PATH
+        SPARKLE_PATH,
+        SPARKLE_CONFIGS
     };
 })();
