@@ -150,11 +150,8 @@
     color: transparent;
     -webkit-text-fill-color: transparent;
     
-    /* Inherit position from wrapper */
-    background-position: var(--bg-x, 0%) 0;
-    
-    /* Separate animation for gradient movement */
-    animation: gradient-x 10s linear infinite;
+    /* Position: static offset + animated offset (driven by JS for Safari compatibility) */
+    background-position: calc(var(--bg-x, 0px) + var(--bg-offset, 0px)) 0;
     
     /* Safari Fix: Clone decoration box */
     -webkit-box-decoration-break: clone;

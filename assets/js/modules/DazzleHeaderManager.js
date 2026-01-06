@@ -13,8 +13,15 @@ export class DazzleHeaderManager {
         this.observer = null;
         this.resizeHandler = null;
         
+        // Animation state for JS-driven gradient (Safari compatibility)
+        this.animationId = null;
+        this.animationOffset = 0;
+        this.animationSpeed = 10; // pixels per frame (~600px/sec at 60fps)
+        this.isPaused = false;
+        
         // Bind methods
         this.handleResize = this.handleResize.bind(this);
+        this.animateGradient = this.animateGradient.bind(this);
     }
 
     /**
@@ -45,6 +52,8 @@ export class DazzleHeaderManager {
             if (this.textWrapper) {
                 DOMUtils.addClass(this.textWrapper, 'loaded');
             }
+            // Start JS-driven gradient animation (Safari compatible)
+            this.startGradientAnimation();
         });
 
         // Robustness: Recalculate on window load to ensure fonts are ready
@@ -154,6 +163,50 @@ export class DazzleHeaderManager {
     }
 
     /**
+     * Start the JS-driven gradient animation loop
+     * This replaces CSS animation for Safari compatibility
+     */
+    startGradientAnimation() {
+        if (this.animationId) return; // Already running
+        this.animateGradient();
+    }
+
+    /**
+     * Animation frame callback - updates gradient offset
+     */
+    animateGradient() {
+        if (!this.isPaused && this.gradientText) {
+            // Increment offset
+            this.animationOffset += this.animationSpeed;
+            
+            // Reset when we've scrolled one full viewport width (seamless loop)
+            const viewportWidth = window.innerWidth;
+            if (this.animationOffset >= viewportWidth) {
+                this.animationOffset = 0;
+            }
+            
+            // Apply offset to all gradient-word elements
+            const spans = this.gradientText.querySelectorAll('.gradient-word');
+            spans.forEach(span => {
+                span.style.setProperty('--bg-offset', `${this.animationOffset}px`);
+            });
+        }
+        
+        // Continue animation loop
+        this.animationId = requestAnimationFrame(this.animateGradient);
+    }
+
+    /**
+     * Stop the gradient animation
+     */
+    stopGradientAnimation() {
+        if (this.animationId) {
+            cancelAnimationFrame(this.animationId);
+            this.animationId = null;
+        }
+    }
+
+    /**
      * Setup intersection observer for performance
      */
     setupIntersectionObserver() {
@@ -161,8 +214,10 @@ export class DazzleHeaderManager {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     DOMUtils.removeClass(this.container, 'paused');
+                    this.isPaused = false;
                 } else {
                     DOMUtils.addClass(this.container, 'paused');
+                    this.isPaused = true;
                 }
             });
         }, { threshold: 0 });
@@ -189,6 +244,9 @@ export class DazzleHeaderManager {
      * Cleanup resources
      */
     destroy() {
+        // Stop gradient animation
+        this.stopGradientAnimation();
+        
         if (this.resizeHandler) {
             window.removeEventListener('resize', this.resizeHandler);
         }
@@ -203,5 +261,7 @@ export class DazzleHeaderManager {
 
         this.container = null;
         this.gradientText = null;
+        this.animationOffset = 0;
+        this.isPaused = false;
     }
 }
