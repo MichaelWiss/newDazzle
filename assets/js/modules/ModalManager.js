@@ -9,7 +9,7 @@ export class ModalManager {
     constructor() {
         this.overlay = null;
         this.content = null;
-        this.activeBookId = null;
+        this.activeProjectId = null;
         this.elements = {};
         
         // Bind methods
@@ -42,22 +42,42 @@ export class ModalManager {
         const closeBtn = this.createCloseButton();
         
         // Persistent Content Elements (initially hidden or empty)
+        // Persistent Content Elements (initially hidden or empty)
+        this.elements.mediaContainer = DOMUtils.createElement('div', 'modal-media-container');
+
         this.elements.img = DOMUtils.createElement('img', 'modal-image');
         this.elements.img.id = 'modal-img-el';
+        this.elements.img.style.display = 'none'; // Default hidden
+
+        this.elements.video = DOMUtils.createElement('video', 'modal-video', {
+            muted: '',
+            loop: '',
+            autoplay: '',
+            playsinline: '',
+            controls: ''
+        });
+        this.elements.video.id = 'modal-video-el';
+        this.elements.video.style.display = 'none'; // Default hidden
         
+        DOMUtils.appendChildren(this.elements.mediaContainer, [this.elements.img, this.elements.video]);
+
         this.elements.title = DOMUtils.createElement('h2', 'modal-title');
         this.elements.title.id = 'modal-title-el';
         
-        this.elements.author = DOMUtils.createElement('p', 'modal-author');
-        this.elements.author.id = 'modal-author-el';
+        this.elements.client = DOMUtils.createElement('p', 'modal-client');
+        this.elements.client.id = 'modal-client-el';
         
-        this.elements.btn = DOMUtils.createElement('button', 'borrow-btn', { text: 'Borrow Book' });
+        this.elements.service = DOMUtils.createElement('p', 'modal-service');
+        this.elements.service.id = 'modal-service-el';
+        
+        this.elements.btn = DOMUtils.createElement('button', 'view-project-btn', { text: 'View Project' });
 
         DOMUtils.appendChildren(this.content, [
             closeBtn, 
-            this.elements.img, 
+            this.elements.mediaContainer, 
             this.elements.title, 
-            this.elements.author, 
+            this.elements.client, 
+            this.elements.service,
             this.elements.btn
         ]);
 
@@ -75,20 +95,20 @@ export class ModalManager {
     }
 
     /**
-     * Open modal with specific book data
-     * @param {string} bookId 
+     * Open modal with specific project data
+     * @param {string} projectId 
      */
-    open(bookId) {
-        this.activeBookId = bookId;
+    open(projectId) {
+        this.activeProjectId = projectId;
         
         if (!this.overlay) {
             console.error('ModalManager not initialized');
             return;
         }
 
-        const book = Constants.BOOKS.find(b => b.id === this.activeBookId);
-        if (book) {
-            this.updateContent(book);
+        const project = Constants.PROJECTS.find(p => p.id === this.activeProjectId);
+        if (project) {
+            this.updateContent(project);
             DOMUtils.addClass(this.overlay, Constants.CLASSES.isOpen);
             document.body.style.overflow = 'hidden'; // Prevent background scrolling
         }
@@ -97,18 +117,34 @@ export class ModalManager {
     /**
      * Update persistent elements with new data
      */
-    updateContent(book) {
-        if (this.elements.img) {
-            this.elements.img.src = book.image;
-            this.elements.img.alt = book.title;
+    updateContent(project) {
+        const isVideo = project.media.endsWith('.webm') || project.media.endsWith('.mp4');
+
+        if (isVideo) {
+            this.elements.video.src = project.media;
+            this.elements.video.style.display = 'block';
+            this.elements.video.play().catch(e => console.warn('Modal video play blocked', e));
+            
+            this.elements.img.style.display = 'none';
+        } else {
+            this.elements.img.src = project.media;
+            this.elements.img.alt = project.title;
+            this.elements.img.style.display = 'block';
+            
+            this.elements.video.style.display = 'none';
+            this.elements.video.pause();
         }
 
         if (this.elements.title) {
-            this.elements.title.textContent = book.title;
+            this.elements.title.textContent = project.title;
         }
 
-        if (this.elements.author) {
-            this.elements.author.textContent = book.author;
+        if (this.elements.client) {
+            this.elements.client.textContent = project.client;
+        }
+        
+        if (this.elements.service) {
+            this.elements.service.textContent = project.service;
         }
     }
 
@@ -116,7 +152,7 @@ export class ModalManager {
      * Close the modal
      */
     close() {
-        this.activeBookId = null;
+        this.activeProjectId = null;
         if (this.overlay) {
             DOMUtils.removeClass(this.overlay, Constants.CLASSES.isOpen);
             document.body.style.overflow = ''; // Restore scrolling

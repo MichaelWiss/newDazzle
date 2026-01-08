@@ -7,7 +7,7 @@ import { SiteData } from '../data.js';
 const siteData = SiteData || {};
 const dazzleData = siteData.dazzle || {};
 
-const BOOKS = siteData.books || [];
+const PROJECTS = siteData.projects || [];
 const DAZZLE_TEXT = dazzleData.text || '';
 const DAZZLE_COLORS = dazzleData.colors || [];
 
@@ -39,7 +39,7 @@ const SPARKLE_CONFIGS = [
 ];
 
 export const Constants = {
-    BOOKS,
+    PROJECTS,
     DAZZLE_TEXT,
     ELEMENTS,
     CLASSES,
