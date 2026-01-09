@@ -20,29 +20,29 @@ export const SiteData = {
             id: 'runners-rotation', 
             title: 'Runners Rotation', 
             client: 'Personal Project', 
-            service: 'Shopify Development',
+            service: 'Shopify Headless Store',
             media: '/assets/img/runnersRotation.webm',
         },
         { 
-            id: 'daughters-geography', 
-            title: "A Daughter's Geography", 
-            client: 'Ntozake Shange', 
-            service: 'Web Design',
-            media: 'https://saintheron.com/cdn/shop/files/A_Daughter_s_Geography_600x.jpg?v=1758819678' 
+            id: 'Hummingbird-Pantry', 
+            title: "Hummingbird Pantry", 
+            client: 'Pantry App', 
+            service: 'Web Application',
+            media: '/assets/img/hummingbirdPantry.webm', 
         },
         { 
-            id: 'black-dance', 
-            title: 'Black Dance', 
-            client: 'Edward Thorpe', 
-            service: 'UI/UX Design',
-            media: 'https://saintheron.com/cdn/shop/files/COVER_BLACKDANCE_600x.png?v=1698690934' 
+            id: 'refinements', 
+            title: 'Refinements', 
+            client: 'Personal Project', 
+            service: 'Shopify Custom Theme',
+           media: '/assets/img/refinements1.webm', 
         },
         { 
             id: 'american-negro-art', 
             title: 'American Negro Art', 
             client: 'Cedric Dover', 
             service: 'Full Stack Dev',
-            media: 'https://saintheron.com/cdn/shop/products/American-Negro-Art-001_600x.png?v=1634054597' 
+            media: '/assets/img/chefPortfoli.webm',
         }
     ]
 };
