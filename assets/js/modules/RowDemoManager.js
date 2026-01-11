@@ -40,6 +40,8 @@ export class RowDemoManager {
 
         this.renderProjectList(wrapper);
         this.renderProjectGrid(wrapper);
+        this.renderFooter(wrapper);
+        this.renderResumeDrawer(); // Inject the drawer markup
 
         DOMUtils.append(this.container, wrapper);
     }
@@ -213,6 +215,87 @@ export class RowDemoManager {
         DOMUtils.append(gridContainer, fragment);
         DOMUtils.append(gridSection, gridContainer);
         DOMUtils.append(container, gridSection);
+    }
+
+    /**
+     * Render the footer with Resume link
+     */
+    renderFooter(container) {
+        // Create footer row matching .index-row structure
+        const footerRow = DOMUtils.createElement('div', 'index-row');
+        footerRow.id = 'footer-row';
+        footerRow.style.borderBottom = 'none'; // Footer specific style
+        footerRow.style.marginTop = '40px'; // Spacing
+        footerRow.style.cursor = 'pointer';
+
+        const metaIndex = DOMUtils.createElement('div', 'row-meta', { text: '00' });
+        
+        const titleCol = DOMUtils.createElement('div');
+        const h1 = DOMUtils.createElement('h1', '', { text: 'RESUME' });
+        DOMUtils.append(titleCol, h1);
+        
+        const emailCol = DOMUtils.createElement('div', 'row-meta text-right', { text: 'michael.wiss@gmail.com' });
+        const phoneCol = DOMUtils.createElement('div', 'row-meta text-right', { text: '612-434-7463' });
+
+        DOMUtils.appendChildren(footerRow, [metaIndex, titleCol, emailCol, phoneCol]);
+        
+        // Click handler to open drawer
+        footerRow.addEventListener('click', () => {
+            const drawer = document.getElementById('resume-drawer');
+            if (drawer) {
+                drawer.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        });
+
+        DOMUtils.append(container, footerRow);
+    }
+
+    /**
+     * Render the Resume Drawer markup into the body
+     */
+    renderResumeDrawer() {
+        if (document.getElementById('resume-drawer')) return; // Prevent duplicates
+
+        const drawer = DOMUtils.createElement('div');
+        drawer.id = 'resume-drawer';
+        
+        drawer.innerHTML = `
+            <div class="drawer-content">
+                <div class="drawer-header">
+                    <button class="drawer-btn close-drawer-btn">
+                        <i class="fas fa-times"></i> Close
+                    </button>
+                </div>
+                <iframe src="resume.html" title="Resume"></iframe>
+            </div>
+        `;
+
+        // Append to body so it overlays everything
+        document.body.appendChild(drawer);
+
+        // Bind events for this drawer
+        const closeBtn = drawer.querySelector('.close-drawer-btn');
+        closeBtn.addEventListener('click', () => {
+            drawer.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        // Close on Esc
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && drawer.classList.contains('active')) {
+                drawer.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+        
+        // Close on click outside (backdrop)
+        drawer.addEventListener('click', (e) => {
+            if (e.target === drawer) {
+                drawer.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
     }
 
     /**
