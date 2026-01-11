@@ -5,6 +5,7 @@
 import '../css/dazzle.css';
 import '../css/row.css';
 import '../css/modal.css';
+import '../css/resume.css';
 
 import { Constants } from './modules/constants.js';
 import { DazzleHeaderManager } from './modules/DazzleHeaderManager.js';

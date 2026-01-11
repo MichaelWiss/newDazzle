@@ -4,6 +4,7 @@
  */
 import { DOMUtils } from './domUtils.js';
 import { Constants } from './constants.js';
+import { ResumeRenderer } from './ResumeRenderer.js';
 
 export class RowDemoManager {
     constructor({ modalManager }) {
@@ -267,9 +268,13 @@ export class RowDemoManager {
                         <i class="fas fa-times"></i> Close
                     </button>
                 </div>
-                <iframe src="resume.html" title="Resume"></iframe>
+                <div id="resume-container-scrollable" style="flex: 1; overflow-y: auto;"></div>
             </div>
         `;
+
+        // Render Dynamic Resume
+        const scrollContainer = drawer.querySelector('#resume-container-scrollable');
+        ResumeRenderer.render(scrollContainer, Constants.RESUME_DATA);
 
         // Append to body so it overlays everything
         document.body.appendChild(drawer);

@@ -8,6 +8,7 @@ const siteData = SiteData || {};
 const dazzleData = siteData.dazzle || {};
 
 const PROJECTS = siteData.projects || [];
+const RESUME_DATA = siteData.resume || {};
 const DAZZLE_TEXT = dazzleData.text || '';
 const DAZZLE_COLORS = dazzleData.colors || [];
 
@@ -40,6 +41,7 @@ const SPARKLE_CONFIGS = [
 
 export const Constants = {
     PROJECTS,
+    RESUME_DATA,
     DAZZLE_TEXT,
     ELEMENTS,
     CLASSES,
