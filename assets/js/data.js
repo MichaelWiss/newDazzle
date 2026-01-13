@@ -63,6 +63,22 @@ export const SiteData = {
             service: 'Shopify Headless Store',
             media: '/assets/img/printedPoster.webm',
             url: 'https://printed-poster.vercel.app/'
+        },
+        { 
+            id: 'outrageousPayload', 
+            title: 'Outrageous Payload', 
+            client: 'Outrageous Grocery Store', 
+            service: 'Payload Headless Store',
+            media: '/assets/img/outrageousPayload.webm',
+            url: '#'
+        },
+        { 
+            id: 'hubertsCraftCMS', 
+            title: 'Huberts Crafts', 
+            client: 'Huberts Craft Store', 
+            service: 'Craft CMS Headless Store',
+            media: '/assets/img/hubertsCraftCMS.webm',
+            url: '#'
         }
     ],
     resume: {
