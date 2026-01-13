@@ -37,8 +37,24 @@ export class ResumeRenderer {
 
         const header = DOMUtils.createElement('header');
         
+        // Create header-top container for name and portfolio link
+        const headerTop = DOMUtils.createElement('div', 'header-top');
+        
         const h1 = DOMUtils.createElement('h1', 'resume-name', { text: headerData.name });
-        DOMUtils.append(header, h1);
+        DOMUtils.append(headerTop, h1);
+        
+        // Add portfolio link if provided
+        if (headerData.portfolioUrl) {
+            const portfolioLink = DOMUtils.createElement('a', 'portfolio-link', {
+                href: headerData.portfolioUrl,
+                text: 'michaelwiss.vercel.app',
+                target: '_blank',
+                rel: 'noreferrer noopener'
+            });
+            DOMUtils.append(headerTop, portfolioLink);
+        }
+        
+        DOMUtils.append(header, headerTop);
 
         if (headerData.links) {
             const contact = DOMUtils.createElement('div', 'contact');

@@ -141,6 +141,26 @@
     text-align: left;
 }
 
+/* Header Top - Name and Portfolio Link */
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.portfolio-link {
+    font-size: 11px;
+    color: #0066cc;
+    text-decoration: underline;
+    transition: background-color 0.2s;
+    white-space: nowrap;
+}
+
+.portfolio-link:hover {
+    background-color: #b3e5fc;
+}
+
 /* Contact Info */
 .contact {
     display: flex;
@@ -320,6 +340,11 @@
     
     .page header {
         text-align: center;
+    }
+    
+    .header-top {
+        flex-direction: column;
+        gap: 6px;
     }
     
     .page h1 {

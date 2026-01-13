@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Michael Wiss - Web Developer</title>
+    <!-- Updated: 2026-01-13 portfolio link added -->
     <style>
         * {
             margin: 0;
@@ -38,6 +39,11 @@
             
             header {
                 text-align: center;
+            }
+            
+            .header-top {
+                flex-direction: column;
+                gap: 6px;
             }
             
             h1 {
@@ -111,11 +117,30 @@
             border-bottom: 2px solid #333;
         }
         
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+        
         h1 {
             font-size: 28px;
             font-weight: 700;
-            margin-bottom: 4px;
+            margin-bottom: 0;
             color: #111;
+        }
+        
+        .portfolio-link {
+            font-size: 11px;
+            color: #0066cc;
+            text-decoration: underline;
+            transition: background-color 0.2s;
+            white-space: nowrap;
+        }
+        
+        .portfolio-link:hover {
+            background-color: #b3e5fc;
         }
         
         .contact {
@@ -294,7 +319,10 @@
 <body>
     <div class="page">
         <header>
-            <h1>Michael Wiss</h1>
+            <div class="header-top">
+                <h1>Michael Wiss</h1>
+                <a href="https://michaelwiss.vercel.app/" target="_blank" class="portfolio-link">michaelwiss.vercel.app</a>
+            </div>
             <div class="contact">
                 <span>Web Developer</span>
                 <span>Minneapolis, NY, Remote</span>

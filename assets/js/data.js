@@ -22,20 +22,23 @@ export const SiteData = {
             client: 'Running Shoe Retail', 
             service: 'Shopify Headless Store',
             media: '/assets/img/runnersRotation.webm',
+            url: 'https://runners-rotation.vercel.app/'
         },
         { 
             id: 'Hummingbird-Pantry', 
             title: "Hummingbird Pantry", 
             client: 'Pantry App', 
             service: 'Web Application',
-            media: '/assets/img/hummingbirdPantry.webm', 
+            media: '/assets/img/hummingbirdPantry.webm',
+            url: 'https://github.com/MichaelWiss/HummingbirdPantry'
         },
         { 
             id: 'refinements', 
             title: 'Refinements', 
             client: 'Home Furnishing Retail', 
             service: 'Shopify Custom Theme',
-            media: '/assets/img/refinements1.webm', 
+            media: '/assets/img/refinements1.webm',
+            url: 'https://github.com/MichaelWiss/Refinements'
         },
         { 
             id: 'cultivatedSounds', 
@@ -43,6 +46,7 @@ export const SiteData = {
             client: 'Record Store', 
             service: 'Shopify Custom Theme',
             media: '/assets/img/cultivatedSounds.webm',
+            url: 'https://cultivated-sounds.myshopify.com'
         },
         { 
             id: 'chefportfolio', 
@@ -50,11 +54,13 @@ export const SiteData = {
             client: 'Kenneth W.', 
             service: 'Strapi',
             media: '/assets/img/chefPortfolio.webm',
+            url: 'https://github.com/MichaelWiss/ChefPortfolio'
         }
     ],
     resume: {
         header: {
             name: "Michael Wiss",
+            portfolioUrl: "https://michaelwiss.vercel.app/",
             title: "Web Developer",
             location: "Minneapolis, NY, Remote",
             links: [

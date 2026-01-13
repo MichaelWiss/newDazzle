@@ -73,7 +73,6 @@ export class ModalManager {
         this.elements.btn = DOMUtils.createElement('button', 'view-project-btn', { text: 'View Project' });
 
         DOMUtils.appendChildren(this.content, [
-            closeBtn, 
             this.elements.mediaContainer, 
             this.elements.title, 
             this.elements.client, 
@@ -81,6 +80,8 @@ export class ModalManager {
             this.elements.btn
         ]);
 
+        // Append close button and content to overlay
+        DOMUtils.append(this.overlay, closeBtn);
         DOMUtils.append(this.overlay, this.content);
         DOMUtils.append(parent, this.overlay);
     }
@@ -90,7 +91,10 @@ export class ModalManager {
      */
     createCloseButton() {
         const btn = DOMUtils.createElement('div', 'close-btn', { text: 'Close' });
-        DOMUtils.addEventListener(btn, 'click', this.close);
+        DOMUtils.addEventListener(btn, 'click', (e) => {
+            e.stopPropagation();
+            this.close();
+        });
         return btn;
     }
 
@@ -145,6 +149,25 @@ export class ModalManager {
         
         if (this.elements.service) {
             this.elements.service.textContent = project.service;
+        }
+        
+        // Handle button URL
+        if (this.elements.btn) {
+            // Remove any existing click handlers
+            const newBtn = this.elements.btn.cloneNode(true);
+            this.elements.btn.parentNode.replaceChild(newBtn, this.elements.btn);
+            this.elements.btn = newBtn;
+            
+            if (project.url) {
+                this.elements.btn.style.display = 'block';
+                this.elements.btn.style.cursor = 'pointer';
+                this.elements.btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    window.open(project.url, '_blank', 'noopener,noreferrer');
+                });
+            } else {
+                this.elements.btn.style.display = 'none';
+            }
         }
     }
 

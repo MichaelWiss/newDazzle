@@ -35,16 +35,19 @@
 }
 
 .close-btn {
-    position: absolute;
+    position: fixed;
     top: 30px;
     right: 40px;
-    font-size: 1rem;
-    cursor: pointer;
-    text-transform: uppercase;
-    border: 1px solid #000;
-    padding: 10px 20px;
-    border-radius: 20px;
     background: transparent;
+    color: #000;
+    border: 1px solid #000;
+    padding: 15px 40px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    z-index: 1001;
+    transition: background 0.2s ease, color 0.2s ease;
 }
 
 .close-btn:hover {
@@ -92,10 +95,11 @@
     border: 1px solid #000;
     padding: 15px 40px;
     text-transform: uppercase;
-    margin-top: 30px;
+    margin: 30px auto 0;
     cursor: pointer;
     border-radius: 30px;
     font-size: 0.9rem;
+    display: block;
 }
 
 .view-project-btn:hover {
@@ -110,20 +114,11 @@
     }
 
     .close-btn {
-        top: 0px;
-        right: 0px;
-        position: absolute; /* Keep absolute but relative to modal-content */
-        margin: 10px; /* Give some breathing room */
+        top: 10px;
+        right: 10px;
         padding: 8px 15px;
         font-size: 0.8rem;
-        background: #fff; /* Ensure visibility over content */
-        z-index: 100;
-        border: none;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-    
-    .modal-media-container {
-        margin-top: 50px; /* Push content down to avoid overlap with close button */
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
 
     .modal-image,
