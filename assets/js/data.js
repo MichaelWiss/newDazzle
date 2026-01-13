@@ -19,7 +19,7 @@ export const SiteData = {
         { 
             id: 'runners-rotation', 
             title: 'Runners Rotation', 
-            client: 'Personal Project', 
+            client: 'Running Shoe Retail', 
             service: 'Shopify Headless Store',
             media: '/assets/img/runnersRotation.webm',
         },
@@ -33,16 +33,23 @@ export const SiteData = {
         { 
             id: 'refinements', 
             title: 'Refinements', 
-            client: 'Personal Project', 
+            client: 'Home Furnishing Retail', 
             service: 'Shopify Custom Theme',
             media: '/assets/img/refinements1.webm', 
         },
         { 
-            id: 'american-negro-art', 
-            title: 'American Negro Art', 
-            client: 'Cedric Dover', 
-            service: 'Full Stack Dev',
-            media: '/assets/img/chefPortfoli.webm',
+            id: 'cultivatedSounds', 
+            title: 'Cultivated Sounds', 
+            client: 'Record Store', 
+            service: 'Shopify Custom Theme',
+            media: '/assets/img/cultivatedSounds.webm',
+        },
+        { 
+            id: 'chefportfolio', 
+            title: 'Chef Portfolio', 
+            client: 'Kenneth W.', 
+            service: 'Strapi',
+            media: '/assets/img/chefPortfolio.webm',
         }
     ],
     resume: {

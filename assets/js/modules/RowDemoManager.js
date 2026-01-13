@@ -14,6 +14,9 @@ export class RowDemoManager {
         this.hoveredProjectId = null;
         this.cleanups = [];
         
+        // Array of rotation angles for variety
+        this.rotationAngles = [-8, -5, -2, 3, 6, -6, 2, -4, 5, -3];
+        
         // Bind methods
         this.updateHoverImage = this.updateHoverImage.bind(this);
     }
@@ -103,7 +106,10 @@ export class RowDemoManager {
                     img.style.display = 'block';
                 }
 
-
+                // Get project index and apply rotation angle
+                const projectIndex = Constants.PROJECTS.findIndex(p => p.id === this.hoveredProjectId);
+                const rotationAngle = this.rotationAngles[projectIndex % this.rotationAngles.length];
+                this.hoverImageContainer.style.setProperty('--hover-rotation', `${rotationAngle}deg`);
 
                 DOMUtils.addClass(this.hoverImageContainer, Constants.CLASSES.visible);
             }
