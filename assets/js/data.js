@@ -5,7 +5,7 @@
 
 export const SiteData = {
     dazzle: {
-        text: `Michael Wiss is a creative web developer in New York City that makes everything DAZZLING. We make work across all mediums and platforms: branding, digital, motion, illustration, environmental, print, packaging & more.`,
+        text: `Michael Wiss is a creative web developer that makes everything Magical. I make websites specializing in React Shopify and GSAP.`,
         colors: [
             '#ff5ca8', // Hot Pink
             '#ffbd2e', // Marigold
@@ -55,6 +55,14 @@ export const SiteData = {
             service: 'Strapi',
             media: '/assets/img/chefPortfolio.webm',
             url: 'https://github.com/MichaelWiss/ChefPortfolio'
+        },
+         { 
+            id: 'printedPoster', 
+            title: 'Printed Poster', 
+            client: 'Printed Poster', 
+            service: 'Shopify Headless Store',
+            media: '/assets/img/printedPoster.webm',
+            url: 'https://printed-poster.vercel.app/'
         }
     ],
     resume: {
@@ -81,9 +89,9 @@ export const SiteData = {
                     { name: "Custom Shopify Online Store 2.0 Theme — Commerce Engine", url: "https://github.com/MichaelWiss/shopify5LiquidJson", desc: "Developed a custom Shopify Online Store 2.0 theme using a full design-system approach with SCSS tokens, CSS custom properties, and modular JSON templates. Built a flexible section architecture with reusable Liquid components, an AJAX cart with variant logic, and improved mobile accessibility through WCAG-compliant interactions. The project highlights my ability to architect modern Shopify themes with clean Liquid structure, responsive design, and performant front-end behavior." },
                     { name: "CraftCMS — Full-stack E-Commerce Platform", url: "https://github.com/MichaelWiss/CraftCMS", desc: "Complete e-commerce system combining Craft CMS 4 + Craft Commerce 4 with Next.js 14 React storefront. Exposed products via GraphQL and custom REST API modules. TypeScript + Tailwind frontend using Apollo Client + Zustand for state management. Features full cart and checkout flows, schema-driven content, and modular product components. Delivered performant, CMS-editable commerce experience bridging editorial flexibility with modern front-end architecture." },
                     { name: "Chef Portfolio CMS — Strapi + Next.js Platform", url: "#", desc: "Two-app stack pairing Strapi v5 (SQLite) with Next.js v15 frontend and Tailwind-backed component system for visually rich storytelling." },
-                    { name: "PrintedPoster — Shopify E-Commerce Storefront", url: "#", desc: "Production-ready Next.js (App Router) storefront deployed to Vercel with custom product pages, cart flow, and collection filtering." },
+                    { name: "PrintedPoster — Shopify E-Commerce Storefront", url: "https://printed-poster.vercel.app/", desc: "Production-ready Next.js (App Router) storefront deployed to Vercel with custom product pages, cart flow, and collection filtering." },
                     { name: "HummingbirdPantry — Smart Pantry PWA", url: "#", desc: "Multimodal, offline-first pantry manager with barcode scanning (ZXing), voice/camera hooks, and hardened dev setup (local HTTPS, secrets scanning, Playwright/Vitest). Modular React + TypeScript (Vite) architecture with Zustand and Tailwind + Radix UI for fast, testable feature work. Simplified item intake to \"scan-and-stash,\" laying groundwork for AI-assisted lists and background sync." },
-                    { name: "RunnersRotation — Shopify Hydrogen Storefront", url: "#", desc: "Modern Hydrogen storefront on Express + Vite with React Router 7, live Storefront API integration, and metafield-driven homepage hero." },
+                    { name: "RunnersRotation — Shopify Hydrogen Storefront", url: "https://runners-rotation.vercel.app/", desc: "Modern Hydrogen storefront on Express + Vite with React Router 7, live Storefront API integration, and metafield-driven homepage hero." },
                     { name: "Dubrovnikcontemporary.com", url: "http://dubrovnikcontemporary.com", desc: "Gallery website featuring unobtrusive jQuery slideshows and custom Google Maps integration.", noHover: true },
                     { name: "Renovationyc.com", url: "http://renovationyc.com", desc: "WordPress CMS site with jQuery slideshow, mailing list sign-up, and contact form for rapid client updates.", noHover: true },
                     { name: "Linzinc.com", url: "http://linzinc.com", desc: "Rebuilt Flash experience with jQuery technologies, full e-commerce catalogue, and integrated blog + social APIs.", noHover: true }
