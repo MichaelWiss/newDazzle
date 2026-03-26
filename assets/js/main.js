@@ -10,6 +10,7 @@ import '../css/resume.css';
 import { Constants } from './modules/constants.js';
 import { DazzleHeaderManager } from './modules/DazzleHeaderManager.js';
 import { ModalManager } from './modules/ModalManager.js';
+import { HoverCardManager } from './modules/HoverCardManager.js';
 import { RowDemoManager } from './modules/RowDemoManager.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -21,14 +22,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalManager = new ModalManager();
     modalManager.init(document.body);
 
-    // 3. Initialize Row Demo with Modal dependency
-    const rowDemoManager = new RowDemoManager({ modalManager });
+    // 3. Initialize Hover Card Manager
+    const hoverCardManager = new HoverCardManager();
+
+    // 4. Initialize Row Demo with Modal + Hover dependencies
+    const rowDemoManager = new RowDemoManager({ modalManager, hoverCardManager });
     rowDemoManager.init('rowDemo');
     
     // Expose for debugging
     window.App = {
         header: headerManager,
         modal: modalManager,
+        hoverCard: hoverCardManager,
         rowDemo: rowDemoManager
     };
 });
