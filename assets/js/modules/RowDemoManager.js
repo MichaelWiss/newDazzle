@@ -32,6 +32,9 @@ export class RowDemoManager {
       this.renderProjectRow(project, index);
     });
 
+    // Project thumbnail grid
+    this.renderGrid();
+
     // Footer row + Resume drawer
     this.renderFooter();
     this.renderResumeDrawer();
@@ -179,6 +182,39 @@ export class RowDemoManager {
     }
     const target = document.getElementById(`p-${proj}-${tabIdx}`);
     if (target) target.classList.add('active');
+  }
+
+  renderGrid() {
+    const grid = DOMUtils.createElement("div", "project-grid");
+
+    SiteData.projects.forEach((project, index) => {
+      const tile = DOMUtils.createElement("div", "grid-tile");
+
+      const isVideo = project.media?.endsWith('.webm') || project.media?.endsWith('.mp4');
+      let mediaHtml;
+      if (isVideo) {
+        mediaHtml = `<video class="grid-tile-media" src="${project.media}" autoplay loop muted playsinline></video>`;
+      } else if (project.media) {
+        mediaHtml = `<img class="grid-tile-media" src="${project.media}" alt="${project.title}">`;
+      } else {
+        mediaHtml = `<div class="grid-tile-media grid-tile-ph">${project.title}</div>`;
+      }
+
+      tile.innerHTML = `
+        ${mediaHtml}
+        <div class="grid-tile-label">${project.title}</div>
+      `;
+
+      tile.addEventListener("click", () => {
+        this.toggleCaseStudy(index);
+        const row = document.getElementById(`cs-${index}`);
+        if (row) setTimeout(() => row.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 60);
+      });
+
+      grid.appendChild(tile);
+    });
+
+    this.container.appendChild(grid);
   }
 
   renderFooter() {
