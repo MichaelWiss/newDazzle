@@ -220,7 +220,7 @@ body { font-family: var(--sans); background: var(--bg); min-height: 100vh; overf
   .row-title { font-size: clamp(2rem,9vw,3rem); }
   .cs-body { grid-template-columns: 1fr; }
   .hover-card { display: none; }
-  .cs-frame { padding: .75rem; }
+  .cs-frame { padding: .75rem; min-height: 0; }
 
   /* Tabs — wrap to fit mobile viewports */
   .cs-tabs {
@@ -228,7 +228,8 @@ body { font-family: var(--sans); background: var(--bg); min-height: 100vh; overf
     overflow-x: visible;
   }
   .cs-tab {
-    flex-shrink: 1;
+    flex: 1;
+    text-align: center;
     white-space: normal;
     font-size: 11px;
     padding: .7rem 1rem;
