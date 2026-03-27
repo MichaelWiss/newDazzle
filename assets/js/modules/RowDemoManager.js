@@ -182,7 +182,7 @@ export class RowDemoManager {
     this.openIdx = el.classList.contains('open') ? idx : null;
 
     if (this.openIdx !== null) {
-      setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+      setTimeout(() => el.parentElement.scrollIntoView({ behavior: 'smooth', block: 'start' }), 600);
     }
   }
 
@@ -224,7 +224,7 @@ export class RowDemoManager {
       const activateTile = () => {
         this.toggleCaseStudy(index);
         const row = document.getElementById(`cs-${index}`);
-        if (row) setTimeout(() => row.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 60);
+        if (row) setTimeout(() => row.parentElement.scrollIntoView({ behavior: 'smooth', block: 'start' }), 600);
       };
 
       tile.addEventListener("click", activateTile);
