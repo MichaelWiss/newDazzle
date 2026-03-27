@@ -222,17 +222,16 @@ body { font-family: var(--sans); background: var(--bg); min-height: 100vh; overf
   .hover-card { display: none; }
   .cs-frame { padding: .75rem; }
 
-  /* Tabs — swipeable, larger tap targets */
+  /* Tabs — wrap to fit mobile viewports */
   .cs-tabs {
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
+    flex-wrap: wrap;
+    overflow-x: visible;
   }
-  .cs-tabs::-webkit-scrollbar { display: none; }
   .cs-tab {
-    scroll-snap-align: start;
+    flex-shrink: 1;
+    white-space: normal;
     font-size: 11px;
-    padding: .95rem 1.2rem;
+    padding: .7rem 1rem;
     min-height: 44px;
   }
 
