@@ -20,7 +20,6 @@ export class DazzleHeaderManager {
         this.isPaused = false;
         
         // Bind methods
-        this.handleResize = this.handleResize.bind(this);
         this.animateGradient = this.animateGradient.bind(this);
     }
 
@@ -121,6 +120,7 @@ export class DazzleHeaderManager {
     renderSparkles(parent) {
         Constants.SPARKLE_CONFIGS.forEach(config => {
             const wrapper = DOMUtils.createElement('div', 'sparkle-container');
+            wrapper.setAttribute('aria-hidden', 'true');
             DOMUtils.applyStyles(wrapper, config.style);
             
             const svg = this.createSparkleSVG(config.size, config.color);
@@ -226,18 +226,15 @@ export class DazzleHeaderManager {
     }
 
     /**
-     * Setup window resize handler
+     * Setup window resize handler (debounced to avoid layout thrashing)
      */
     setupResizeHandler() {
-        this.resizeHandler = this.handleResize;
+        let resizeTimer;
+        this.resizeHandler = () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => this.updateGradientPositions(), 150);
+        };
         window.addEventListener('resize', this.resizeHandler);
-    }
-
-    /**
-     * Handle resize event
-     */
-    handleResize() {
-         this.updateGradientPositions();
     }
 
     /**

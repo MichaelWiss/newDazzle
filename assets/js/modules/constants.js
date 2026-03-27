@@ -10,7 +10,6 @@ const dazzleData = siteData.dazzle || {};
 const PROJECTS = siteData.projects || [];
 const RESUME_DATA = siteData.resume || {};
 const DAZZLE_TEXT = dazzleData.text || '';
-const DAZZLE_COLORS = dazzleData.colors || [];
 
 const ELEMENTS = {
     dazzleHeader: 'dazzleHeader',
@@ -23,7 +22,6 @@ const CLASSES = {
     visible: 'visible',
     isOpen: 'is-open',
     indexRow: 'index-row',
-    gridTile: 'grid-tile',
     closeBtn: 'close-btn',
     hoverImage: 'hover-image',
 };

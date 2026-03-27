@@ -29,11 +29,5 @@ document.addEventListener('DOMContentLoaded', () => {
     const rowDemoManager = new RowDemoManager({ modalManager, hoverCardManager });
     rowDemoManager.init('rowDemo');
     
-    // Expose for debugging
-    window.App = {
-        header: headerManager,
-        modal: modalManager,
-        hoverCard: hoverCardManager,
-        rowDemo: rowDemoManager
-    };
+
 });

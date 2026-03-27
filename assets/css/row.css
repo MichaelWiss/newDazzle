@@ -44,7 +44,7 @@ body { font-family: var(--sans); background: var(--bg); min-height: 100vh; overf
 
 /* CASE STUDY EXPAND */
 .cs-wrap { max-height: 0; overflow: hidden; transition: max-height .55s cubic-bezier(.16,1,.3,1); }
-.cs-wrap.open { max-height: 1400px; }
+.cs-wrap.open { max-height: 4000px; }
 .cs-body {
   background: var(--cream); border-radius: 3px; margin-bottom: 1.5rem;
   overflow: hidden; display: grid; grid-template-columns: 300px 1fr;
@@ -57,13 +57,13 @@ body { font-family: var(--sans); background: var(--bg); min-height: 100vh; overf
 }
 .cs-eyebrow  { font-family: var(--mono); font-size: 10px; letter-spacing: .2em; color: var(--coral); }
 .cs-title    { font-family: var(--serif); font-size: 1.75rem; font-weight: 700; color: var(--cream); line-height: 1.1; }
-.cs-desc     { font-family: var(--sans); font-size: 12px; color: rgba(244,239,228,.45); line-height: 1.85; font-weight: 300; }
+.cs-desc     { font-family: var(--sans); font-size: 12px; color: rgba(244,239,228,.7); line-height: 1.85; font-weight: 300; }
 .cs-stats    { display: flex; flex-direction: column; margin-top: auto; }
 .cs-stat     { padding: .75rem 0; border-top: 1px solid rgba(244,239,228,.07); display: flex; justify-content: space-between; align-items: baseline; }
-.cs-stat-lbl { font-family: var(--mono); font-size: 9px; letter-spacing: .1em; color: rgba(244,239,228,.25); }
+.cs-stat-lbl { font-family: var(--mono); font-size: 9px; letter-spacing: .1em; color: rgba(244,239,228,.65); }
 .cs-stat-val { font-family: var(--serif); font-size: 1.4rem; font-weight: 700; font-style: italic; color: var(--coral); }
 .cs-pills    { display: flex; flex-wrap: wrap; gap: 5px; }
-.cs-pill     { font-family: var(--mono); font-size: 9px; letter-spacing: .06em; padding: 3px 9px; border: 1px solid rgba(244,239,228,.12); border-radius: 100px; color: rgba(244,239,228,.3); }
+.cs-pill     { font-family: var(--mono); font-size: 9px; letter-spacing: .06em; padding: 3px 9px; border: 1px solid rgba(244,239,228,.35); border-radius: 100px; color: rgba(244,239,228,.65); }
 .cs-link     {
   display: block; text-align: center; font-family: var(--mono); font-size: 11px;
   letter-spacing: .1em; color: var(--cream); border: 1px solid rgba(244,239,228,.2);

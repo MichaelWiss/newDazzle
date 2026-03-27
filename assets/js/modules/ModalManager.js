@@ -25,6 +25,9 @@ export class ModalManager {
 
     this.overlay = DOMUtils.createElement("div", "modal-overlay");
     this.overlay.id = Constants.ELEMENTS.modalOverlay;
+    this.overlay.setAttribute('role', 'dialog');
+    this.overlay.setAttribute('aria-modal', 'true');
+    this.overlay.setAttribute('aria-labelledby', 'modal-title-el');
 
     // Close on overlay click
     DOMUtils.addEventListener(this.overlay, "click", () => {

@@ -54,6 +54,9 @@ export class RowDemoManager {
       <span class="row-tech">${project.stack || project.service || (project.caseStudy?.pills ? project.caseStudy.pills.slice(0,2).join(', ') : '')}</span>
     `;
 
+    rowInner.setAttribute('role', 'button');
+    rowInner.setAttribute('tabindex', '0');
+
     // Events for toggle and hover card
     rowInner.addEventListener("mouseenter", () => {
       if(this.hoverCardManager) this.hoverCardManager.hoverShow(index);
@@ -62,6 +65,12 @@ export class RowDemoManager {
       if(this.hoverCardManager) this.hoverCardManager.hoverHide();
     });
     rowInner.addEventListener("click", () => this.toggleCaseStudy(index));
+    rowInner.addEventListener("keydown", (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        this.toggleCaseStudy(index);
+      }
+    });
 
     row.appendChild(rowInner);
 
@@ -110,7 +119,15 @@ export class RowDemoManager {
         const tabBtn = DOMUtils.createElement("div", "cs-tab");
         if (tabIdx === 0) tabBtn.classList.add("active");
         tabBtn.textContent = tab.label;
+        tabBtn.setAttribute('role', 'tab');
+        tabBtn.setAttribute('tabindex', tabIdx === 0 ? '0' : '-1');
         tabBtn.addEventListener("click", (e) => this.switchTab(projIdx, tabIdx, e.currentTarget));
+        tabBtn.addEventListener("keydown", (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            this.switchTab(projIdx, tabIdx, e.currentTarget);
+          }
+        });
         tabsWrap.appendChild(tabBtn);
 
         // Panel content
@@ -173,13 +190,9 @@ export class RowDemoManager {
     document.querySelectorAll(`#tabs-${proj} .cs-tab`).forEach(t => t.classList.remove('active'));
     el.classList.add('active');
 
-    let i = 0;
-    while (true) {
-      const p = document.getElementById(`p-${proj}-${i}`);
-      if (p === null) break;
-      p.classList.remove('active');
-      i++;
-    }
+    const screensEl = document.getElementById(`tabs-${proj}`)?.closest('.cs-screens');
+    if (screensEl) screensEl.querySelectorAll('.cs-panel').forEach(p => p.classList.remove('active'));
+
     const target = document.getElementById(`p-${proj}-${tabIdx}`);
     if (target) target.classList.add('active');
   }
@@ -189,13 +202,16 @@ export class RowDemoManager {
 
     SiteData.projects.forEach((project, index) => {
       const tile = DOMUtils.createElement("div", "grid-tile");
+      tile.setAttribute('role', 'button');
+      tile.setAttribute('tabindex', '0');
+      tile.setAttribute('aria-label', `View ${project.title} case study`);
 
       const isVideo = project.media?.endsWith('.webm') || project.media?.endsWith('.mp4');
       let mediaHtml;
       if (isVideo) {
         mediaHtml = `<video class="grid-tile-media" src="${project.media}" autoplay loop muted playsinline></video>`;
       } else if (project.media) {
-        mediaHtml = `<img class="grid-tile-media" src="${project.media}" alt="${project.title}">`;
+        mediaHtml = `<img class="grid-tile-media" src="${project.media}" alt="${project.title}" loading="lazy">`;
       } else {
         mediaHtml = `<div class="grid-tile-media grid-tile-ph">${project.title}</div>`;
       }
@@ -205,10 +221,18 @@ export class RowDemoManager {
         <div class="grid-tile-label">${project.title}</div>
       `;
 
-      tile.addEventListener("click", () => {
+      const activateTile = () => {
         this.toggleCaseStudy(index);
         const row = document.getElementById(`cs-${index}`);
         if (row) setTimeout(() => row.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 60);
+      };
+
+      tile.addEventListener("click", activateTile);
+      tile.addEventListener("keydown", (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          activateTile();
+        }
       });
 
       grid.appendChild(tile);
@@ -231,12 +255,22 @@ export class RowDemoManager {
       <span class="row-cat">michael.wiss@gmail.com</span>
       <span class="row-tech">612-434-7463</span>
     `;
+    rowInner.setAttribute('role', 'button');
+    rowInner.setAttribute('tabindex', '0');
 
-    rowInner.addEventListener('click', () => {
+    const openDrawer = () => {
       const drawer = document.getElementById('resume-drawer');
       if (drawer) {
         drawer.classList.add('active');
         document.body.style.overflow = 'hidden';
+      }
+    };
+
+    rowInner.addEventListener('click', openDrawer);
+    rowInner.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openDrawer();
       }
     });
 
@@ -249,6 +283,9 @@ export class RowDemoManager {
 
     const drawer = DOMUtils.createElement('div');
     drawer.id = 'resume-drawer';
+    drawer.setAttribute('role', 'dialog');
+    drawer.setAttribute('aria-modal', 'true');
+    drawer.setAttribute('aria-label', 'Resume');
     
     drawer.innerHTML = `
       <div class="drawer-content">

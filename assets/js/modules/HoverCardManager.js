@@ -79,6 +79,7 @@ export class HoverCardManager {
   hoverHide() {
     this.card.classList.remove("show");
     cancelAnimationFrame(this.raf);
+    this.raf = null;
     if(this.hcVideo) this.hcVideo.pause();
   }
 }
