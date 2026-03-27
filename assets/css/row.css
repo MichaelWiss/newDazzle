@@ -73,7 +73,7 @@ body { font-family: var(--sans); background: var(--bg); min-height: 100vh; overf
 .cs-link:hover { background: rgba(244,239,228,.06); border-color: rgba(244,239,228,.4); }
 
 /* Screen area */
-.cs-screens { background: var(--crmd); display: flex; flex-direction: column; }
+.cs-screens { background: var(--crmd); display: flex; flex-direction: column; overflow: hidden; }
 .cs-tabs {
   display: flex; border-bottom: 1px solid var(--border);
   background: var(--cream); overflow-x: auto;
@@ -113,7 +113,7 @@ body { font-family: var(--sans); background: var(--bg); min-height: 100vh; overf
 .chrome-dots { display: flex; gap: 5px; }
 .chrome-dot  { width: 9px; height: 9px; border-radius: 50%; }
 .chrome-url  {
-  flex: 1; background: rgba(255,255,255,.55); border-radius: 3px;
+  flex: 1; min-width: 0; background: rgba(255,255,255,.55); border-radius: 3px;
   padding: 3px 10px; font-family: var(--mono); font-size: 9px;
   color: rgba(26,26,46,.4); margin: 0 .5rem;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
