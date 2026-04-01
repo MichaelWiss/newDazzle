@@ -270,6 +270,7 @@ export const SiteData = {
           {
             label: "Dashboard",
             url: "hummingbirdpantry.app/dashboard",
+            media: "/assets/img/hummingbird.webp",
             notes: [
               {
                 label: "Design decision",
@@ -294,6 +295,7 @@ export const SiteData = {
           {
             label: "Add item",
             url: "hummingbirdpantry.app/add",
+            media: "/assets/img/hummingbird1.webp",
             notes: [
               {
                 label: "Design decision",
