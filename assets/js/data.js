@@ -37,7 +37,7 @@ export const SiteData = {
           {
             label: "PDP",
             url: "runners-rotation.vercel.app/products/nb-fuelcell-rebel-v4",
-            media: "/assets/img/runnersrotation-pdp.png",
+            media: "/assets/img/runnersrotation-pdp.webp",
             notes: [
               {
                 label: "Design decision",
@@ -52,7 +52,7 @@ export const SiteData = {
           {
             label: "Product grid",
             url: "runners-rotation.vercel.app/collections/road-running",
-            media: "/assets/img/runnersrotation-pg.png",
+            media: "/assets/img/runnersrotation-pg.webp",
             notes: [
               {
                 label: "Design decision",
@@ -67,7 +67,7 @@ export const SiteData = {
           {
             label: "Product showcase",
             url: "runners-rotation.vercel.app/showcase",
-            media: "/assets/img/runnersrotation-landingpage.png",
+            media: "/assets/img/runnersrotation-landingpage.webp",
             notes: [
               {
                 label: "Design decision",
@@ -78,11 +78,92 @@ export const SiteData = {
           {
             label: "Run Club",
             url: "runners-rotation.vercel.app/run-club",
-            media: "/assets/img/runnersrotation-blog.png",
+            media: "/assets/img/runnersrotation-blog.webp",
             notes: [
               {
                 label: "Design decision",
                 body: "1% for the Planet badge, store hours by category, and Pinterest social proof — credibility without cluttering the main flow.",
+              },
+            ],
+          },
+        ],
+      },
+    },
+    {
+      id: "b2b-powerhouse",
+      title: "B2B Powerhouse",
+      industry: "Wholesale Gym Equipment",
+      stack: "Next.js · Shopify · ERPNext · Sanity",
+      media: "/assets/img/b2bpowerhouse.webm",
+      url: "https://github.com/MichaelWiss/b2bpowerhouse",
+      caseStudy: {
+        eyebrow: "B2B Wholesale · Three-System Orchestration",
+        description:
+          "An AI-powered B2B wholesale platform for premium gym equipment that orchestrates Shopify, Sanity CMS, and ERPNext through a unified Next.js interface — with webhook-driven async order sync, SKU mapping as the system spine, and a Phase 3 AI reorder assistant.",
+        stats: [
+          { label: "External systems", value: "3" },
+          { label: "Retry attempts", value: "5×" },
+          { label: "Deploy", value: "Vercel" },
+        ],
+        pills: ["Next.js 16", "TypeScript", "Shopify B2B", "ERPNext", "Sanity CMS", "PostgreSQL", "Prisma", "pg-boss"],
+        tabs: [
+          {
+            label: "Product catalog",
+            url: "github.com/MichaelWiss/b2bpowerhouse",
+            media: "/assets/img/b2bpowerhouse-productgrid.webp",
+            notes: [
+              {
+                label: "Data ownership",
+                body: "Sanity CMS owns product descriptions, spec sheets, and rich media. Shopify owns pricing and B2B catalogs with customer-specific rates. Both pulled server-side through Next.js App Router.",
+              },
+              {
+                label: "Architecture",
+                body: "Cookie-based B2B auth — `b2b_session` carries customer/company/email. Middleware protects `/account/*` and `/admin/*` routes. Server-side API proxies cache ERPNext inventory for 60 seconds.",
+              },
+            ],
+          },
+          {
+            label: "PDP",
+            url: "github.com/MichaelWiss/b2bpowerhouse",
+            media: "/assets/img/b2bpowerhouse-pdp.webp",
+            notes: [
+              {
+                label: "Live inventory",
+                body: "Real-time stock levels and warehouse locations proxied from ERPNext — secrets never exposed to the client. Zod-validated responses with 60-second server cache.",
+              },
+              {
+                label: "Pricing",
+                body: "Customer-specific pricing pulled from Shopify B2B catalogs with net-30/60 payment terms. Company account context resolved from session cookie on every request.",
+              },
+            ],
+          },
+          {
+            label: "Order flow",
+            url: "github.com/MichaelWiss/b2bpowerhouse",
+            video: "/assets/img/b2bpowerhouse2.webm",
+            notes: [
+              {
+                label: "Webhook pipeline",
+                body: "Shopify `orders/create` webhook — HMAC-verified, idempotency-checked via `WebhookLog`, enqueued to pg-boss `order-created` queue. Handler maps Shopify SKUs to ERPNext item codes via `SkuMapping` and creates the Sales Order.",
+              },
+              {
+                label: "Reliability",
+                body: "5× retries with exponential backoff. `WebhookLog` unique on `idempotencyKey` prevents duplicate processing. `SyncEvent` records all external IDs for full audit trail.",
+              },
+            ],
+          },
+          {
+            label: "Fulfillment",
+            url: "github.com/MichaelWiss/b2bpowerhouse",
+            video: "/assets/img/b2bpowerhouse3.webm",
+            notes: [
+              {
+                label: "ERPNext → Shopify",
+                body: "ERPNext Delivery Note webhook resolves the original Shopify order via `SyncEvent`, matches line items by SKU, and creates a Shopify fulfillment with tracking. `FulfillmentSync` record logs the ERPNext ↔ Shopify mapping.",
+              },
+              {
+                label: "Inventory sync",
+                body: "Stock changes in ERPNext trigger a Next.js handler that looks up `inventoryItemId` via `SkuMapping` and calls Shopify Admin API to update quantity. All three flows use `SkuMapping` as the single source of truth.",
               },
             ],
           },
@@ -110,7 +191,7 @@ export const SiteData = {
           {
             label: "Storefront",
             url: "pressandco.com/collections/business-cards",
-            media: "/assets/img/pressco-storefront.png",
+            media: "/assets/img/pressco-storefront.webp",
             notes: [
               {
                 label: "Shopify headless",
@@ -121,7 +202,7 @@ export const SiteData = {
           {
             label: "PDP",
             url: "pressandco.com/products/the-classicist",
-            media: "/assets/img/pressco-pdp.png",
+            media: "/assets/img/pressco-pdp.webp",
             notes: [
               {
                 label: "Custom properties",
@@ -132,7 +213,7 @@ export const SiteData = {
           {
             label: "Custom service",
             url: "pressandco.com/custom",
-            media: "/assets/img/pressco-custom.png",
+            media: "/assets/img/pressco-custom.webp",
             notes: [
               {
                 label: "Bespoke orderflow",
@@ -143,7 +224,7 @@ export const SiteData = {
           {
             label: "Cart",
             url: "pressandco.com/cart",
-            media: "/assets/img/pressco-cart.png",
+            media: "/assets/img/pressco-cart.webp",
             notes: [
               {
                 label: "Checkout trigger",
@@ -154,7 +235,7 @@ export const SiteData = {
           {
             label: "OMS dashboard",
             url: "pressandco.com/admin",
-            media: "/assets/img/pressco-oms.png",
+            media: "/assets/img/pressco-oms.webp",
             notes: [
               {
                 label: "Observability",
@@ -243,7 +324,7 @@ export const SiteData = {
           {
             label: "Collection",
             url: "refinements.co/collections/showrooms",
-            media: "/assets/img/refinements-detail1.png",
+            media: "/assets/img/refinements-detail1.webp",
             notes: [
               {
                 label: "Design decision",
@@ -258,7 +339,7 @@ export const SiteData = {
           {
             label: "Material guide",
             url: "refinements.co/pages/materials",
-            media: "/assets/img/refinements-detail2.png",
+            media: "/assets/img/refinements-detail2.webp",
             notes: [
               {
                 label: "Design decision",
@@ -269,7 +350,7 @@ export const SiteData = {
           {
             label: "PDP",
             url: "refinements.co/products/oslo-side-table",
-            media: "/assets/img/refinements-pdp.png",
+            media: "/assets/img/refinements-pdp.webp",
             notes: [
               {
                 label: "Design decision",
@@ -316,7 +397,7 @@ export const SiteData = {
           {
             label: "Grid map",
             url: "powergrid.vercel.app/map",
-            media: "/assets/img/powergrid-map.png",
+            media: "/assets/img/powergrid-map.webp",
             notes: [
               {
                 label: "Geospatial visualization",
@@ -331,7 +412,7 @@ export const SiteData = {
           {
             label: "Scenarios",
             url: "powergrid.vercel.app/scenarios",
-            media: "/assets/img/powergrid-panel.png",
+            media: "/assets/img/powergrid-panel.webp",
             notes: [
               {
                 label: "What-if simulation",
