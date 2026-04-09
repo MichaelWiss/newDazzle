@@ -105,7 +105,16 @@ export const SiteData = {
           { label: "Retry attempts", value: "5×" },
           { label: "Deploy", value: "Vercel" },
         ],
-        pills: ["Next.js 16", "TypeScript", "Shopify B2B", "ERPNext", "Sanity CMS", "PostgreSQL", "Prisma", "pg-boss"],
+        pills: [
+          "Next.js 16",
+          "TypeScript",
+          "Shopify B2B",
+          "ERPNext",
+          "Sanity CMS",
+          "PostgreSQL",
+          "Prisma",
+          "pg-boss",
+        ],
         tabs: [
           {
             label: "Product catalog",
@@ -186,7 +195,14 @@ export const SiteData = {
           { label: "Verification", value: "HMAC" },
           { label: "Deploy", value: "Vercel" },
         ],
-        pills: ["Next.js", "TypeScript", "Inngest", "Supabase", "Odoo XML-RPC", "Shopify API"],
+        pills: [
+          "Next.js",
+          "TypeScript",
+          "Inngest",
+          "Supabase",
+          "Odoo XML-RPC",
+          "Shopify API",
+        ],
         tabs: [
           {
             label: "Storefront",
@@ -379,7 +395,15 @@ export const SiteData = {
           { label: "Data sources", value: "5+" },
           { label: "Stack", value: "Full" },
         ],
-        pills: ["Next.js 16", "TypeScript", "Zustand", "Supabase", "Mapbox GL", "Chart.js", "Tailwind v4"],
+        pills: [
+          "Next.js 16",
+          "TypeScript",
+          "Zustand",
+          "Supabase",
+          "Mapbox GL",
+          "Chart.js",
+          "Tailwind v4",
+        ],
         tabs: [
           {
             label: "KPI dashboard",
@@ -679,7 +703,7 @@ export const SiteData = {
       name: "Michael Wiss",
       portfolioUrl: "https://michaelwiss.vercel.app/",
       title: "Web Developer",
-      location: "Minneapolis, NY, Remote",
+      location: "Minneapolis, MN, Remote",
       links: [
         {
           url: "mailto:michael.wiss@gmail.com",
@@ -690,7 +714,11 @@ export const SiteData = {
           url: "https://github.com/MichaelWiss",
           text: "github.com/MichaelWiss",
         },
-        { text: "Download PDF", isButton: true },
+        {
+          text: "Download PDF",
+          isButton: true,
+          url: "/assets/img/Michael_Wiss_Resume(1).pdf",
+        },
       ],
     },
     experience: [
@@ -702,78 +730,54 @@ export const SiteData = {
           "Building modern web applications with React, TypeScript, and Next.js. Specializing in PWAs, e-commerce solutions, and headless CMS architectures with focus on performance and accessibility.",
         projects: [
           {
+            name: "shopOMS — Shopify Order Management System",
+            url: "#",
+            desc: "Middleware OMS connecting a headless Shopify storefront to Odoo ERP for bespoke letterpress business cards. Next.js 16 App Router with Inngest serverless job queue, Supabase PostgreSQL event logging, and XML-RPC integration. Webhook-driven async processing with HMAC verification, rate limiting, retry logic (3-5 attempts), and real-time admin dashboard with sync event streaming.",
+          },
+          {
+            name: "B2B Powerhouse — Wholesale Platform",
+            url: "#",
+            desc: "Three-system orchestration platform for premium gym equipment wholesalers. Next.js 16 App Router coordinating Shopify (commerce), Sanity CMS (content), and ERPNext (inventory/fulfillment). Implemented SKU mapping spine, idempotent webhook processing with pg-boss queue, server-side API proxies with 60s caching, and cookie-based B2B authentication. Delivered unified commerce experience with customer-specific pricing and AI reorder assistant.",
+          },
+          {
             name: "Payload CMS + Next.js E-Commerce Platform",
             url: "https://github.com/MichaelWiss/Payload",
-            desc: "Composable e-commerce platform using Payload CMS v3 (Node.js/TypeScript) as headless backend and Next.js 15 (App Router) storefront, integrated with Stripe for payment flows. Defined core collections (Products, Variants, Categories, Orders) with content-block extensibility. Built category filtering, rich product pages with variants, cart state management, and SEO-friendly metadata. PostgreSQL schema with REST API endpoints, production-ready deployment on Vercel. Delivered unified content-commerce stack enabling rapid product onboarding and streamlined checkout UX with full CMS control.",
+            desc: "Composable e-commerce platform using Payload CMS v3 (Node.js/TypeScript) as headless backend with Next.js 15 App Router storefront. Stripe payment integration, content-block extensibility, category filtering with rich product pages, cart state management, and SEO-friendly metadata. PostgreSQL schema with REST API endpoints, production-ready deployment on Vercel.",
           },
           {
-            name: "Custom Shopify Online Store 2.0 Theme — Commerce Engine",
+            name: "Custom Shopify Online Store 2.0 Theme",
             url: "https://github.com/MichaelWiss/shopify5LiquidJson",
-            desc: "Developed a custom Shopify Online Store 2.0 theme using a full design-system approach with SCSS tokens, CSS custom properties, and modular JSON templates. Built a flexible section architecture with reusable Liquid components, an AJAX cart with variant logic, and improved mobile accessibility through WCAG-compliant interactions. The project highlights my ability to architect modern Shopify themes with clean Liquid structure, responsive design, and performant front-end behavior.",
+            desc: "Full design-system approach with SCSS tokens, CSS custom properties, and modular JSON templates. Flexible section architecture with reusable Liquid components, AJAX cart with variant logic, and WCAG-compliant mobile accessibility. Modern Shopify theme with clean Liquid structure and performant front-end behavior.",
           },
           {
-            name: "CraftCMS — Full-stack E-Commerce Platform",
+            name: "CraftCMS Full-Stack E-Commerce Platform",
             url: "https://github.com/MichaelWiss/CraftCMS",
-            desc: "Complete e-commerce system combining Craft CMS 4 + Craft Commerce 4 with Next.js 14 React storefront. Exposed products via GraphQL and custom REST API modules. TypeScript + Tailwind frontend using Apollo Client + Zustand for state management. Features full cart and checkout flows, schema-driven content, and modular product components. Delivered performant, CMS-editable commerce experience bridging editorial flexibility with modern front-end architecture.",
-          },
-          {
-            name: "Chef Portfolio CMS — Strapi + Next.js Platform",
-            url: "#",
-            desc: "Two-app stack pairing Strapi v5 (SQLite) with Next.js v15 frontend and Tailwind-backed component system for visually rich storytelling.",
-          },
-          {
-            name: "PrintedPoster — Shopify E-Commerce Storefront",
-            url: "https://printed-poster.vercel.app/",
-            desc: "Production-ready Next.js (App Router) storefront deployed to Vercel with custom product pages, cart flow, and collection filtering.",
+            desc: "Complete e-commerce system combining Craft CMS 4 + Craft Commerce 4 with Next.js 14 React storefront. Products exposed via GraphQL and custom REST API modules. TypeScript + Tailwind frontend using Apollo Client + Zustand for state management with full cart and checkout flows.",
           },
           {
             name: "HummingbirdPantry — Smart Pantry PWA",
             url: "#",
-            desc: 'Multimodal, offline-first pantry manager with barcode scanning (ZXing), voice/camera hooks, and hardened dev setup (local HTTPS, secrets scanning, Playwright/Vitest). Modular React + TypeScript (Vite) architecture with Zustand and Tailwind + Radix UI for fast, testable feature work. Simplified item intake to "scan-and-stash," laying groundwork for AI-assisted lists and background sync.',
-          },
-          {
-            name: "RunnersRotation — Shopify Hydrogen Storefront",
-            url: "https://runners-rotation.vercel.app/",
-            desc: "Modern Hydrogen storefront on Express + Vite with React Router 7, live Storefront API integration, and metafield-driven homepage hero.",
-          },
-          {
-            name: "Dubrovnikcontemporary.com",
-            url: "http://dubrovnikcontemporary.com",
-            desc: "Gallery website featuring unobtrusive jQuery slideshows and custom Google Maps integration.",
-            noHover: true,
-          },
-          {
-            name: "Renovationyc.com",
-            url: "http://renovationyc.com",
-            desc: "WordPress CMS site with jQuery slideshow, mailing list sign-up, and contact form for rapid client updates.",
-            noHover: true,
-          },
-          {
-            name: "Linzinc.com",
-            url: "http://linzinc.com",
-            desc: "Rebuilt Flash experience with jQuery technologies, full e-commerce catalogue, and integrated blog + social APIs.",
-            noHover: true,
+            desc: 'Multimodal, offline-first pantry manager with barcode scanning (ZXing), voice/camera hooks, and hardened dev setup with local HTTPS, secrets scanning, and Playwright/Vitest testing. Modular React + TypeScript (Vite) architecture with Zustand and Tailwind + Radix UI. Simplified item intake to "scan-and-stash," laying groundwork for AI-assisted lists and background sync.',
           },
         ],
         skills: [
+          "HTML5",
+          "CSS3",
           "React",
           "TypeScript",
           "Next.js",
+          "Vue",
           "Shopify",
-          "Gatsby",
           "JavaScript",
           "Node.js",
           "GraphQL",
-          "Vite",
-          "React Router",
           "PWA",
-          "Strapi",
-          "Craft CMS",
+          "Headless CMS",
+          "API Integration",
+          "Performance Optimization",
           "Payload CMS",
-          "HTML5",
-          "CSS3",
-          "Tailwind",
-          "WordPress",
+          "Craft CMS",
+          "ERP Integration",
         ],
       },
       {
@@ -801,14 +805,15 @@ export const SiteData = {
     technicalSkills: {
       frontend:
         "HTML5, CSS3, JavaScript, TypeScript, React, Vue, Responsive Design",
-      backend: "Node.js, GraphQL, Gatsby, Shopify Hydrogen, Git, Strapi CMS",
+      backend:
+        "Node.js, GraphQL, Gatsby, Shopify Hydrogen, Git, Strapi CMS, Payload CMS, Craft CMS",
       specializations:
-        "E-Commerce, PWAs, API Integration, Performance Optimization",
+        "E-Commerce, PWAs, API Integration, Performance Optimization, Headless CMS, ERP Integration",
     },
     education: {
       degree: "Bachelor of Fine Arts",
       school: "School of Visual Arts",
-      year: "2004",
+      year: "",
     },
   },
 };
