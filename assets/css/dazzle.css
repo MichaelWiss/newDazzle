@@ -5,202 +5,214 @@
 
 /* Animation Keyframes */
 @keyframes gradient-x {
-    0% {
-        background-position: var(--bg-x) 0;
-    }
-    100% {
-        background-position: calc(var(--bg-x) + 100vw) 0;
-    }
+  0% {
+    background-position: var(--bg-x) 0;
+  }
+  100% {
+    background-position: calc(var(--bg-x) + 100vw) 0;
+  }
 }
 
 @keyframes fall-in {
-    0% {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes pulse {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.5;
-    }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }
 
 /* Dazzle Header Container */
 .dazzle-header {
-    min-height: 100vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    position: relative;
-    overflow: hidden;
-    background-color: #000;
-    color: white;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  position: relative;
+  overflow: hidden;
+  background-color: #000;
+  color: white;
 }
 
 @media (min-width: 768px) {
-    .dazzle-header {
-        padding: 3rem;
-    }
+  .dazzle-header {
+    padding: 3rem;
+  }
 }
 
 /* Background Blobs */
 .bg-blob {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(120px);
-    pointer-events: none;
-    opacity: 0.2;
-    will-change: transform;
-    transform: translateZ(0); /* Hardware accelerate */
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  opacity: 0.2;
+  will-change: transform;
+  transform: translateZ(0); /* Hardware accelerate */
 }
 
 .bg-blob-purple {
-    top: -20%;
-    left: -10%;
-    width: 500px;
-    height: 500px;
-    background-color: #581c87; /* purple-900 */
+  top: -20%;
+  left: -10%;
+  width: 500px;
+  height: 500px;
+  background-color: #581c87; /* purple-900 */
 }
 
 .bg-blob-blue {
-    bottom: -20%;
-    right: -10%;
-    width: 600px;
-    height: 600px;
-    background-color: #1e3a8a; /* blue-900 */
+  bottom: -20%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  background-color: #1e3a8a; /* blue-900 */
 }
 
 /* Main Text Content */
 .dazzle-content {
-    max-width: 80rem; /* max-w-7xl */
-    margin: 0 auto;
-    width: 100%;
-    position: relative;
-    z-index: 10;
+  max-width: 80rem; /* max-w-7xl */
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  z-index: 10;
 }
 
 .dazzle-text-wrapper {
-    position: relative;
-    line-height: 0.85;
-    font-family: "Arial Black", Gadget, sans-serif;
-    font-weight: 900;
-    font-size: clamp(2.25rem, 8vw, 6rem); /* Responsive font size */
-    letter-spacing: -0.05em;
-    text-align: left;
-    text-transform: uppercase;
-    padding-bottom: 0.5rem;
-    
-    /* Hide initially to prevent FOUC/glitches */
-    opacity: 0;
-    transition: opacity 0.2s ease-out;
+  position: relative;
+  line-height: 0.85;
+  font-family: "Arial Black", Gadget, sans-serif;
+  font-weight: 900;
+  font-size: clamp(2.25rem, 8vw, 6rem); /* Responsive font size */
+  letter-spacing: -0.05em;
+  text-align: left;
+  text-transform: uppercase;
+  padding-bottom: 0.5rem;
+
+  /* Hide initially to prevent FOUC/glitches */
+  opacity: 0;
+  transition: opacity 0.2s ease-out;
 }
 
 .dazzle-text-wrapper.loaded {
-    opacity: 1;
+  opacity: 1;
 }
 
 @media (min-width: 768px) {
-    .dazzle-text-wrapper {
-        line-height: 0.8;
-        padding-bottom: 1.5rem;
-    }
+  .dazzle-text-wrapper {
+    line-height: 0.8;
+    padding-bottom: 1.5rem;
+  }
 }
 
 /* Gradient Text Component */
 .gradient-text {
-    display: inline-block;
-    /* Gradient Logic Moved to Children for Safari Compatibility */
+  display: inline-block;
+  /* Gradient Logic Moved to Children for Safari Compatibility */
 }
 
 .gradient-word {
-    display: inline-block;
-    position: relative;
-    /* Removed background logic from here to fix Safari composition issues */
+  display: inline-block;
+  position: relative;
+  /* Removed background logic from here to fix Safari composition issues */
 }
 
 /* Apply animation only when loaded to ensure synchronization */
 .dazzle-text-wrapper.loaded .gradient-word {
-    animation-name: fall-in;
-    animation-duration: 0.6s;
-    animation-timing-function: cubic-bezier(0.2, 0.6, 0.2, 1);
-    animation-fill-mode: both;
-    /* Do NOT use shorthand property to avoid overriding inline animation-delay */
+  animation-name: fall-in;
+  animation-duration: 0.6s;
+  animation-timing-function: cubic-bezier(0.2, 0.6, 0.2, 1);
+  animation-fill-mode: both;
+  /* Do NOT use shorthand property to avoid overriding inline animation-delay */
 }
 
 .gradient-text-clip {
-    display: inline-block; /* Works better than inline for detailed clipping */
-    
-    /* Robust Gradient Logic */
-    background-image: linear-gradient(to right, #ff5ca8, #ffbd2e, #2bf65d, #05d5ff, #a855f7, #ff5ca8);
-    background-size: 100vw 100%;
-    background-attachment: scroll; /* Default, safer */
-    
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
-    
-    /* Position: static offset + animated offset (driven by JS for Safari compatibility) */
-    background-position: calc(var(--bg-x, 0px) + var(--bg-offset, 0px)) 0;
-    
-    /* Safari Fix: Clone decoration box */
-    -webkit-box-decoration-break: clone;
-    box-decoration-break: clone;
-    
-    padding-right: 0.05em; /* Prevent clipping cut-off */
+  display: inline-block; /* Works better than inline for detailed clipping */
+
+  /* Robust Gradient Logic */
+  background-image: linear-gradient(
+    to right,
+    #ff5ca8,
+    #ffbd2e,
+    #2bf65d,
+    #05d5ff,
+    #a855f7,
+    #ff5ca8
+  );
+  background-size: 100vw 100%;
+  background-attachment: scroll; /* Default, safer */
+
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+
+  /* Position: static offset + animated offset (driven by JS for Safari compatibility) */
+  background-position: calc(var(--bg-x, 0px) + var(--bg-offset, 0px)) 0;
+
+  /* Safari Fix: Clone decoration box */
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+
+  padding-right: 0.05em; /* Prevent clipping cut-off */
 }
 
 /* Sparkles */
 .sparkle-container {
-    position: absolute;
-    pointer-events: none;
-    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  position: absolute;
+  pointer-events: none;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 .sparkle-icon {
-    display: block;
+  display: block;
 }
 
 /* Footer Info */
 .dazzle-footer {
-    margin-top: 4rem;
-    color: #4b5563; /* gray-600 */
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-family: monospace;
+  margin-top: 4rem;
+  padding-left: 0.5rem;
+  color: #4b5563; /* gray-600 */
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: monospace;
 }
 
 /* Performance: Paused State */
 .paused * {
-    animation-play-state: paused !important;
+  animation-play-state: paused !important;
 }
 
 /* Accessibility: Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
-    *, ::before, ::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-    }
-    
-    .gradient-text {
-        background-position: 0% 50%; /* Fixed gradient */
-    }
-    
-    .sparkle-container {
-        display: none; /* Hide flashing elements */
-    }
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .gradient-text {
+    background-position: 0% 50%; /* Fixed gradient */
+  }
+
+  .sparkle-container {
+    display: none; /* Hide flashing elements */
+  }
 }
