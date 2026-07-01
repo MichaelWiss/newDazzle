@@ -37,7 +37,7 @@ export const SiteData = {
           {
             label: "PDP",
             url: "runners-rotation.vercel.app/products/nb-fuelcell-rebel-v4",
-            media: "/assets/img/runnersrotation-pdp.webp",
+            media: "/assets/img/runnersrotation-pdp.png",
             notes: [
               {
                 label: "Design decision",
@@ -52,7 +52,7 @@ export const SiteData = {
           {
             label: "Product grid",
             url: "runners-rotation.vercel.app/collections/road-running",
-            media: "/assets/img/runnersrotation-pg.webp",
+            media: "/assets/img/runnersrotation-pg.png",
             notes: [
               {
                 label: "Design decision",
@@ -67,7 +67,7 @@ export const SiteData = {
           {
             label: "Product showcase",
             url: "runners-rotation.vercel.app/showcase",
-            media: "/assets/img/runnersrotation-landingpage.webp",
+            media: "/assets/img/runnersrotation-landingpage.png",
             notes: [
               {
                 label: "Design decision",
@@ -78,7 +78,7 @@ export const SiteData = {
           {
             label: "Run Club",
             url: "runners-rotation.vercel.app/run-club",
-            media: "/assets/img/runnersrotation-blog.webp",
+            media: "/assets/img/runnersrotation-blog.png",
             notes: [
               {
                 label: "Design decision",
@@ -119,7 +119,7 @@ export const SiteData = {
           {
             label: "Product catalog",
             url: "github.com/MichaelWiss/b2bpowerhouse",
-            media: "/assets/img/b2bpowerhouse-productgrid.webp",
+            media: "/assets/img/b2bpowerhouse-productgrid.png",
             notes: [
               {
                 label: "Data ownership",
@@ -134,7 +134,7 @@ export const SiteData = {
           {
             label: "PDP",
             url: "github.com/MichaelWiss/b2bpowerhouse",
-            media: "/assets/img/b2bpowerhouse-pdp.webp",
+            media: "/assets/img/b2bpowerhouse-pdp.png",
             notes: [
               {
                 label: "Live inventory",
@@ -185,7 +185,7 @@ export const SiteData = {
       industry: "Letterpress",
       stack: "Shopify OMS Middleware",
       media: "/assets/img/press&co.webm",
-      url: "#",
+      url: "https://shop-oms.vercel.app/",
       caseStudy: {
         eyebrow: "Next.js · Inngest · Supabase · Odoo",
         description:
@@ -207,7 +207,7 @@ export const SiteData = {
           {
             label: "Storefront",
             url: "pressandco.com/collections/business-cards",
-            media: "/assets/img/pressco-storefront.webp",
+            media: "/assets/img/pressco-storefront.png",
             notes: [
               {
                 label: "Shopify headless",
@@ -218,7 +218,7 @@ export const SiteData = {
           {
             label: "PDP",
             url: "pressandco.com/products/the-classicist",
-            media: "/assets/img/pressco-pdp.webp",
+            media: "/assets/img/pressco-pdp.png",
             notes: [
               {
                 label: "Custom properties",
@@ -229,7 +229,7 @@ export const SiteData = {
           {
             label: "Custom service",
             url: "pressandco.com/custom",
-            media: "/assets/img/pressco-custom.webp",
+            media: "/assets/img/pressco-custom.png",
             notes: [
               {
                 label: "Bespoke orderflow",
@@ -240,7 +240,7 @@ export const SiteData = {
           {
             label: "Cart",
             url: "pressandco.com/cart",
-            media: "/assets/img/pressco-cart.webp",
+            media: "/assets/img/pressco-cart.png",
             notes: [
               {
                 label: "Checkout trigger",
@@ -251,7 +251,7 @@ export const SiteData = {
           {
             label: "OMS dashboard",
             url: "pressandco.com/admin",
-            media: "/assets/img/pressco-oms.webp",
+            media: "/assets/img/pressco-oms.png",
             notes: [
               {
                 label: "Observability",
@@ -286,7 +286,7 @@ export const SiteData = {
           {
             label: "Dashboard",
             url: "hummingbirdpantry.app/dashboard",
-            media: "/assets/img/hummingbird.webp",
+            media: "/assets/img/hummingbird.png",
             notes: [
               {
                 label: "Design decision",
@@ -311,7 +311,7 @@ export const SiteData = {
           {
             label: "Add item",
             url: "hummingbirdpantry.app/add",
-            media: "/assets/img/hummingbird1.webp",
+            media: "/assets/img/hummingbird1.png",
             notes: [
               {
                 label: "Design decision",
@@ -342,7 +342,7 @@ export const SiteData = {
           {
             label: "Collection",
             url: "refinements.co/collections/showrooms",
-            media: "/assets/img/refinements-detail1.webp",
+            media: "/assets/img/refinements-detail1.png",
             notes: [
               {
                 label: "Design decision",
@@ -357,7 +357,7 @@ export const SiteData = {
           {
             label: "Material guide",
             url: "refinements.co/pages/materials",
-            media: "/assets/img/refinements-detail2.webp",
+            media: "/assets/img/refinements-detail2.png",
             notes: [
               {
                 label: "Design decision",
@@ -368,7 +368,7 @@ export const SiteData = {
           {
             label: "PDP",
             url: "refinements.co/products/oslo-side-table",
-            media: "/assets/img/refinements-pdp.webp",
+            media: "/assets/img/refinements-pdp.png",
             notes: [
               {
                 label: "Design decision",
@@ -423,7 +423,7 @@ export const SiteData = {
           {
             label: "Grid map",
             url: "powergrid.vercel.app/map",
-            media: "/assets/img/powergrid-map.webp",
+            media: "/assets/img/powergrid-map.png",
             notes: [
               {
                 label: "Geospatial visualization",
@@ -438,7 +438,7 @@ export const SiteData = {
           {
             label: "Scenarios",
             url: "powergrid.vercel.app/scenarios",
-            media: "/assets/img/powergrid-panel.webp",
+            media: "/assets/img/powergrid-panel.png",
             notes: [
               {
                 label: "What-if simulation",
