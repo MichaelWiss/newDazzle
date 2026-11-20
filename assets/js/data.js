@@ -37,7 +37,7 @@ export const SiteData = {
           {
             label: "PDP",
             url: "runners-rotation.vercel.app/products/nb-fuelcell-rebel-v4",
-            media: "/assets/img/runnersrotation-pdp.png",
+            media: "/assets/img/runnersrotation-pdp.webp",
             notes: [
               {
                 label: "Design decision",
@@ -52,7 +52,7 @@ export const SiteData = {
           {
             label: "Product grid",
             url: "runners-rotation.vercel.app/collections/road-running",
-            media: "/assets/img/runnersrotation-pg.png",
+            media: "/assets/img/runnersrotation-pg.webp",
             notes: [
               {
                 label: "Design decision",
@@ -67,7 +67,7 @@ export const SiteData = {
           {
             label: "Product showcase",
             url: "runners-rotation.vercel.app/showcase",
-            media: "/assets/img/runnersrotation-landingpage.png",
+            media: "/assets/img/runnersrotation-landingpage.webp",
             notes: [
               {
                 label: "Design decision",
@@ -78,7 +78,7 @@ export const SiteData = {
           {
             label: "Run Club",
             url: "runners-rotation.vercel.app/run-club",
-            media: "/assets/img/runnersrotation-blog.png",
+            media: "/assets/img/runnersrotation-blog.webp",
             notes: [
               {
                 label: "Design decision",
@@ -119,7 +119,7 @@ export const SiteData = {
           {
             label: "Product catalog",
             url: "github.com/MichaelWiss/b2bpowerhouse",
-            media: "/assets/img/b2bpowerhouse-productgrid.png",
+            media: "/assets/img/b2bpowerhouse-productgrid.webp",
             notes: [
               {
                 label: "Data ownership",
@@ -134,7 +134,7 @@ export const SiteData = {
           {
             label: "PDP",
             url: "github.com/MichaelWiss/b2bpowerhouse",
-            media: "/assets/img/b2bpowerhouse-pdp.png",
+            media: "/assets/img/b2bpowerhouse-pdp.webp",
             notes: [
               {
                 label: "Live inventory",
@@ -207,7 +207,7 @@ export const SiteData = {
           {
             label: "Storefront",
             url: "pressandco.com/collections/business-cards",
-            media: "/assets/img/pressco-storefront.png",
+            media: "/assets/img/pressco-storefront.webp",
             notes: [
               {
                 label: "Shopify headless",
@@ -218,7 +218,7 @@ export const SiteData = {
           {
             label: "PDP",
             url: "pressandco.com/products/the-classicist",
-            media: "/assets/img/pressco-pdp.png",
+            media: "/assets/img/pressco-pdp.webp",
             notes: [
               {
                 label: "Custom properties",
@@ -229,7 +229,7 @@ export const SiteData = {
           {
             label: "Custom service",
             url: "pressandco.com/custom",
-            media: "/assets/img/pressco-custom.png",
+            media: "/assets/img/pressco-custom.webp",
             notes: [
               {
                 label: "Bespoke orderflow",
@@ -240,7 +240,7 @@ export const SiteData = {
           {
             label: "Cart",
             url: "pressandco.com/cart",
-            media: "/assets/img/pressco-cart.png",
+            media: "/assets/img/pressco-cart.webp",
             notes: [
               {
                 label: "Checkout trigger",
@@ -251,7 +251,7 @@ export const SiteData = {
           {
             label: "OMS dashboard",
             url: "pressandco.com/admin",
-            media: "/assets/img/pressco-oms.png",
+            media: "/assets/img/pressco-oms.webp",
             notes: [
               {
                 label: "Observability",
@@ -286,7 +286,7 @@ export const SiteData = {
           {
             label: "Dashboard",
             url: "hummingbirdpantry.app/dashboard",
-            media: "/assets/img/hummingbird.png",
+            media: "/assets/img/hummingbird.webp",
             notes: [
               {
                 label: "Design decision",
@@ -311,7 +311,7 @@ export const SiteData = {
           {
             label: "Add item",
             url: "hummingbirdpantry.app/add",
-            media: "/assets/img/hummingbird1.png",
+            media: "/assets/img/hummingbird1.webp",
             notes: [
               {
                 label: "Design decision",
@@ -342,7 +342,7 @@ export const SiteData = {
           {
             label: "Collection",
             url: "refinements.co/collections/showrooms",
-            media: "/assets/img/refinements-detail1.png",
+            media: "/assets/img/refinements-detail1.webp",
             notes: [
               {
                 label: "Design decision",
@@ -357,7 +357,7 @@ export const SiteData = {
           {
             label: "Material guide",
             url: "refinements.co/pages/materials",
-            media: "/assets/img/refinements-detail2.png",
+            media: "/assets/img/refinements-detail2.webp",
             notes: [
               {
                 label: "Design decision",
@@ -368,7 +368,7 @@ export const SiteData = {
           {
             label: "PDP",
             url: "refinements.co/products/oslo-side-table",
-            media: "/assets/img/refinements-pdp.png",
+            media: "/assets/img/refinements-pdp.webp",
             notes: [
               {
                 label: "Design decision",
@@ -423,7 +423,7 @@ export const SiteData = {
           {
             label: "Grid map",
             url: "powergrid.vercel.app/map",
-            media: "/assets/img/powergrid-map.png",
+            media: "/assets/img/powergrid-map.webp",
             notes: [
               {
                 label: "Geospatial visualization",
@@ -438,7 +438,7 @@ export const SiteData = {
           {
             label: "Scenarios",
             url: "powergrid.vercel.app/scenarios",
-            media: "/assets/img/powergrid-panel.png",
+            media: "/assets/img/powergrid-panel.webp",
             notes: [
               {
                 label: "What-if simulation",
