@@ -15,16 +15,18 @@ export class HoverCardManager {
     this.cx = 0;
     this.cy = 0;
     this.raf = null;
+    this.mouseMoveHandler = null;
     this.tilts = ["-3deg", "3deg", "-4deg", "2deg"];
 
     this.init();
   }
 
   init() {
-    document.addEventListener("mousemove", (e) => {
+    this.mouseMoveHandler = (e) => {
       this.mx = e.clientX;
       this.my = e.clientY;
-    });
+    };
+    document.addEventListener("mousemove", this.mouseMoveHandler);
   }
 
   tickCard = () => {
@@ -81,5 +83,15 @@ export class HoverCardManager {
     cancelAnimationFrame(this.raf);
     this.raf = null;
     if(this.hcVideo) this.hcVideo.pause();
+  }
+
+  destroy() {
+    cancelAnimationFrame(this.raf);
+    this.raf = null;
+    if (this.hcVideo) this.hcVideo.pause();
+    if (this.mouseMoveHandler) {
+      document.removeEventListener("mousemove", this.mouseMoveHandler);
+    }
+    this.mouseMoveHandler = null;
   }
 }

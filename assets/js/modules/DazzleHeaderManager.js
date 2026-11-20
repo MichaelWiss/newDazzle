@@ -12,6 +12,7 @@ export class DazzleHeaderManager {
     this.textWrapper = null;
     this.observer = null;
     this.resizeHandler = null;
+    this.loadHandler = null;
 
     // Animation state for JS-driven gradient (Safari compatibility)
     this.animationId = null;
@@ -57,9 +58,10 @@ export class DazzleHeaderManager {
 
     // Robustness: Recalculate on window load to ensure fonts are ready
     // This fixes the Safari "blocky text" issue where measurements happen before font load
-    window.addEventListener("load", () => {
+    this.loadHandler = () => {
       this.updateGradientPositions();
-    });
+    };
+    window.addEventListener("load", this.loadHandler);
   }
 
   /**
@@ -254,6 +256,9 @@ export class DazzleHeaderManager {
     if (this.resizeHandler) {
       window.removeEventListener("resize", this.resizeHandler);
     }
+    if (this.loadHandler) {
+      window.removeEventListener("load", this.loadHandler);
+    }
 
     if (this.observer) {
       this.observer.disconnect();
@@ -267,5 +272,6 @@ export class DazzleHeaderManager {
     this.gradientText = null;
     this.animationOffset = 0;
     this.isPaused = false;
+    this.loadHandler = null;
   }
 }
