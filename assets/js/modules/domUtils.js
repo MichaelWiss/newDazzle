@@ -252,7 +252,6 @@ export const DOMUtils = {
          */
         getOffset(el) {
             if (!el) return { top: 0, left: 0, width: 0, height: 0 };
-            const rect = el.getBoundingClientRect();
             return {
                 top: el.offsetTop,
                 left: el.offsetLeft,

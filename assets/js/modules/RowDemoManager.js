@@ -14,6 +14,28 @@ export class RowDemoManager {
     this.resumeDrawerCloseHandler = null;
   }
 
+  createCaseStudyPlaceholder(label) {
+    const pgifPh = DOMUtils.createElement("div", "pgif-ph");
+    DOMUtils.append(
+      pgifPh,
+      DOMUtils.createElement("span", "pgif-ph-label", {
+        text: label || "Media unavailable",
+      }),
+    );
+    return pgifPh;
+  }
+
+  createGridPlaceholder(title) {
+    return DOMUtils.createElement("div", "grid-tile-media grid-tile-ph", {
+      text: title || "Media unavailable",
+    });
+  }
+
+  replaceCaseStudyMediaWithPlaceholder(chromeBody, label) {
+    DOMUtils.clearChildren(chromeBody);
+    DOMUtils.append(chromeBody, this.createCaseStudyPlaceholder(label));
+  }
+
   init(containerId) {
     this.container = DOMUtils.byId(containerId);
     if (!this.container) return;
@@ -202,34 +224,43 @@ export class RowDemoManager {
 
         const chromeBody = DOMUtils.createElement("div", "chrome-body");
         if (tab.media) {
-          DOMUtils.append(
-            chromeBody,
-            DOMUtils.createElement("img", "pgif", {
-              src: tab.media,
-              alt: tab.label || "Project media",
-              loading: "lazy",
-            }),
+          const mediaEl = DOMUtils.createElement("img", "pgif", {
+            src: tab.media,
+            alt: tab.label || "Project media",
+            loading: "lazy",
+          });
+          mediaEl.addEventListener(
+            "error",
+            () => {
+              this.replaceCaseStudyMediaWithPlaceholder(
+                chromeBody,
+                `${tab.label || "Media"} unavailable`,
+              );
+            },
+            { once: true },
           );
+          DOMUtils.append(chromeBody, mediaEl);
         } else if (tab.video) {
-          DOMUtils.append(
-            chromeBody,
-            DOMUtils.createElement("video", "pgif", {
-              src: tab.video,
-              autoplay: "",
-              loop: "",
-              muted: "",
-              playsinline: "",
-            }),
+          const mediaEl = DOMUtils.createElement("video", "pgif", {
+            src: tab.video,
+            autoplay: "",
+            loop: "",
+            muted: "",
+            playsinline: "",
+          });
+          mediaEl.addEventListener(
+            "error",
+            () => {
+              this.replaceCaseStudyMediaWithPlaceholder(
+                chromeBody,
+                `${tab.label || "Media"} unavailable`,
+              );
+            },
+            { once: true },
           );
+          DOMUtils.append(chromeBody, mediaEl);
         } else {
-          const pgifPh = DOMUtils.createElement("div", "pgif-ph");
-          DOMUtils.append(
-            pgifPh,
-            DOMUtils.createElement("span", "pgif-ph-label", {
-              text: tab.label || "",
-            }),
-          );
-          DOMUtils.append(chromeBody, pgifPh);
+          DOMUtils.append(chromeBody, this.createCaseStudyPlaceholder(tab.label || ""));
         }
 
         DOMUtils.appendChildren(chrome, [chromeBar, chromeBody]);
@@ -322,32 +353,37 @@ export class RowDemoManager {
 
       const isVideo = project.media?.endsWith('.webm') || project.media?.endsWith('.mp4');
       if (isVideo) {
-        DOMUtils.append(
-          tile,
-          DOMUtils.createElement("video", "grid-tile-media", {
-            src: project.media,
-            autoplay: "",
-            loop: "",
-            muted: "",
-            playsinline: "",
-          }),
+        const mediaEl = DOMUtils.createElement("video", "grid-tile-media", {
+          src: project.media,
+          autoplay: "",
+          loop: "",
+          muted: "",
+          playsinline: "",
+        });
+        mediaEl.addEventListener(
+          "error",
+          () => {
+            mediaEl.replaceWith(this.createGridPlaceholder(project.title || ""));
+          },
+          { once: true },
         );
+        DOMUtils.append(tile, mediaEl);
       } else if (project.media) {
-        DOMUtils.append(
-          tile,
-          DOMUtils.createElement("img", "grid-tile-media", {
-            src: project.media,
-            alt: project.title || "Project media",
-            loading: "lazy",
-          }),
+        const mediaEl = DOMUtils.createElement("img", "grid-tile-media", {
+          src: project.media,
+          alt: project.title || "Project media",
+          loading: "lazy",
+        });
+        mediaEl.addEventListener(
+          "error",
+          () => {
+            mediaEl.replaceWith(this.createGridPlaceholder(project.title || ""));
+          },
+          { once: true },
         );
+        DOMUtils.append(tile, mediaEl);
       } else {
-        DOMUtils.append(
-          tile,
-          DOMUtils.createElement("div", "grid-tile-media grid-tile-ph", {
-            text: project.title || "",
-          }),
-        );
+        DOMUtils.append(tile, this.createGridPlaceholder(project.title || ""));
       }
 
       DOMUtils.append(

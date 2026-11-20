@@ -3,12 +3,13 @@
 ## Development
 
 - Run dev server: `npm run dev`
+- Lint source files: `npm run lint`
 - Build for production: `npm run build`
 - Validate media references: `npm run check:media-paths`
 
 ## CI
 
-GitHub Actions runs build + media-path validation on every push and pull request via [ci.yml](./.github/workflows/ci.yml).
+GitHub Actions runs lint + build + media-path validation on every push and pull request via [ci.yml](./.github/workflows/ci.yml).
 
 ## Build artifact policy
 

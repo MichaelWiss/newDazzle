@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "vite",
+    "lint": "eslint \"assets/js/**/*.js\" \"scripts/**/*.mjs\"",
     "build": "vite build",
     "preview": "vite preview",
     "check:media-paths": "node scripts/verify-media-paths.mjs"
   },
   "devDependencies": {
+    "eslint": "^8.57.1",
     "vite": "^6.0.0"
   }
 }

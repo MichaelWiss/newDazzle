@@ -224,13 +224,7 @@ export class ModalManager {
           .querySelectorAll("#modal-tabs .cs-tab")
           .forEach((t) => t.classList.remove("active"));
         tabEl.classList.add("active");
-        let i = 0;
-        while (true) {
-          const p = document.getElementById(`modal-p-${i}`);
-          if (!p) break;
-          p.classList.remove("active");
-          i++;
-        }
+        frame.querySelectorAll(".cs-panel").forEach((p) => p.classList.remove("active"));
         const target = document.getElementById(`modal-p-${tabIdx}`);
         if (target) target.classList.add("active");
       });
